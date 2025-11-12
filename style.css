@@ -1,0 +1,640 @@
+/* ======== CSS VARIABLES (THEME) ======== */
+/* ======== CSS VARIABLES (THEME - LIGHT MODE) ======== */
+:root {
+  --color-bg: #f8f8f8;
+  /* Very light gray background */
+  --color-bg-secondary: #ffffff;
+  /* White for cards/sections */
+  --color-primary: #6c63ff;
+  /* A vibrant, modern blue/purple */
+  --color-primary-light: #8a84ff;
+  /* Lighter shade for hover */
+  --color-text: #333333;
+  /* Dark gray for main text */
+  --color-text-secondary: #666666;
+  /* Medium gray for secondary text */
+  --color-border: #e0e0e0;
+  /* Light border for separation */
+  --font-primary: "Poppins", sans-serif;
+  --transition-speed: 0.3s ease;
+}
+
+/* ======== GLOBAL RESETS ======== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-primary);
+  transition: var(--transition-speed);
+}
+
+a:hover {
+  color: var(--color-primary-light);
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+/* ======== UTILITY & CONTAINER ======== */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--color-text);
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: var(--transition-speed);
+  font-size: 0.95rem;
+  border: 2px solid transparent;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-light);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.btn-secondary {
+  border: 2px solid var(--color-text-secondary);
+  color: var(--color-text);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* ======== NAVIGATION ======== */
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+  padding: 1.5rem 0;
+  z-index: 100;
+  transition: background-color var(--transition-speed),
+    box-shadow var(--transition-speed);
+}
+
+.navbar.scrolled {
+  background-color: rgba(255,
+      255,
+      255,
+      0.9);
+  /* Light background for scrolled navbar */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  /* Lighter shadow */
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+  /* Subtle border */
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.nav-logo:hover {
+  color: var(--color-text);
+}
+
+.nav-menu {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-menu a {
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+}
+
+.nav-menu a:hover {
+  color: var(--color-text);
+}
+
+/* Adjust logo color based on scroll state for light theme */
+.navbar .nav-logo {
+  color: var(--color-text);
+  /* Default color for nav logo */
+}
+
+.navbar.scrolled .nav-logo {
+  color: var(--color-text);
+  /* Keep it dark on scrolled light background */
+}
+
+/* Also adjust menu item colors for consistency */
+.navbar .nav-menu a {
+  color: var(--color-text-secondary);
+  /* Default menu item color */
+}
+
+.navbar.scrolled .nav-menu a {
+  color: var(--color-text-secondary);
+  /* Keep it dark on scrolled light background */
+}
+
+.navbar .nav-menu a:hover,
+.navbar.scrolled .nav-menu a:hover {
+  color: var(--color-primary);
+  /* Hover remains consistent */
+}
+
+/* ======== HERO SECTION ======== */
+.hero {
+  /* min-height: 90vh */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: var(--color-text);
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+}
+
+/* ======== WORK SECTION ======== */
+.work-section,
+.about-section,
+.contact-section {
+  padding: 3rem 0;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.project-card {
+  background-color: var(--color-bg-secondary);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform var(--transition-speed),
+    box-shadow var(--transition-speed);
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.project-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.project-header img {
+  height: 3rem;
+  width: auto;
+}
+
+.project-info {
+  padding: 1.5rem;
+}
+
+.project-info h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.project-info p {
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.tags {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  background-color: rgba(157, 78, 221, 0.1);
+  color: var(--color-primary-light);
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* ======== ABOUT SECTION ======== */
+.about-section {
+  background-color: var(--color-bg-secondary);
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.about-text p {
+  font-size: 1.05rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.about-text .btn {
+  margin-top: 1rem;
+}
+
+.about-skills h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.skills-list li {
+  background-color: var(--color-bg);
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0.75rem;
+  border-radius: 8px;
+  font-weight: 400;
+  transition: var(--transition-speed);
+}
+
+.skills-list li:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+  transform: translateX(5px);
+}
+
+/* ======== CONTACT SECTION ======== */
+.contact-section {
+  text-align: center;
+}
+
+.contact-subtitle {
+  font-size: 1.2rem;
+  color: var(--color-text-secondary);
+  max-width: 500px;
+  margin: 0 auto 2.5rem;
+}
+
+.social-links {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.social-links a {
+  font-size: 1.75rem;
+  color: var(--color-text-secondary);
+  transition: var(--transition-speed);
+}
+
+.social-links a:hover {
+  color: var(--color-primary);
+  transform: translateY(-5px);
+}
+
+/* ======== FOOTER ======== */
+.footer {
+  background-color: var(--color-bg-secondary);
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.footer p {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+/* ======== FADE-IN ANIMATION ======== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ======== RESPONSIVE DESIGN ======== */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .nav-menu {
+    /* Basic mobile menu: hides for now. */
+    /* A real implementation would use a JS-toggled burger menu. */
+    display: none;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ======== MODAL STYLES ======== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  /* Slightly less dark overlay */
+  backdrop-filter: blur(5px);
+  display: none;
+  /* Hidden by default */
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.visible {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-content {
+  background: var(--color-bg-secondary);
+  padding: 2.5rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+  /* Animation */
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.visible .modal-content {
+  transform: scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--color-text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: var(--color-text);
+}
+
+/* Styles for the content *inside* the modal */
+#modal-body h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+#modal-body h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+#modal-body p {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+/* ======== ABOUT SECTION SKILL ICONS ======== */
+.skills-list li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.skills-list li i {
+  font-size: 1.1rem;
+  color: var(--color-primary-light);
+  width: 20px;
+  /* Aligns icons neatly */
+  text-align: center;
+}
+
+/* ======== VIEW ALL PROJECTS BUTTON ======== */
+.view-all-projects {
+  text-align: center;
+  margin-top: 4rem;
+  /* Adjust spacing as needed */
+}
+
+/* If you want the button to have a slightly different look, you can add here */
+.view-all-projects .btn-secondary {
+  padding: 0.9rem 2.2rem;
+  font-size: 1rem;
+  border-radius: 50px;
+  /* Ensure it's rounded */
+}
+
+.view-all-projects .btn-secondary:hover {
+  transform: translateY(-3px);
+}
+
+/* ======== ALL PROJECTS PAGE SPECIFIC STYLES ======== */
+.projects-hero {
+  /* min-height: 50vh;  */
+  /* Shorter hero for project page */
+  padding: 2rem 0;
+}
+
+.projects-hero .hero-title {
+  font-size: 3rem;
+  /* Slightly smaller title than homepage */
+  margin-bottom: 1rem;
+}
+
+/* ======== PROJECT CARD LOGO & TITLE STYLES ======== */
+.project-title-with-logo {
+  display: flex;
+  align-items: center;
+  /* Vertically centers logo with text */
+  gap: 0.75rem;
+  /* Space between logo and title */
+  margin-bottom: 0.5rem;
+  /* Space below the title group */
+}
+
+.project-logo {
+  width: 40px;
+  /* Adjust size as needed */
+  height: 40px;
+  /* Keep it square */
+  object-fit: contain;
+  /* Ensures logo fits without cropping */
+  border-radius: 8px;
+  /* Some border radius for the logo */
+  /* If you want a subtle border around the logo itself */
+  border: 1px solid var(--color-border);
+  padding: 4px;
+  /* A little padding inside the border */
+  background-color: var(--color-bg);
+  /* Ensure it contrasts if logo is white */
+}
+
+.project-title-with-logo h3 {
+  margin-bottom: 0;
+  /* Remove default margin from h3 */
+  font-size: 1.4rem;
+  /* Adjust font size if needed to fit */
+}
+
+/* Mobile responsiveness for the logo */
+@media (max-width: 768px) {
+  .project-logo {
+    width: 30px;
+    /* Smaller logos on mobile */
+    height: 30px;
+    border-radius: 6px;
+  }
+
+  .project-title-with-logo h3 {
+    font-size: 1.2rem;
+    /* Adjust font size for mobile */
+  }
+}
+
+/* ======== FILTER MENU STYLES ======== */
+#filter-menu {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.6rem 1.5rem;
+  background-color: transparent;
+  border: 2px solid var(--color-border);
+  color: var(--color-text-secondary);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: var(--transition-speed);
+}
+
+.filter-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.filter-btn.active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+}
+
+/* ======== PROJECT CARD HIDE/SHOW FOR FILTER ======== */
+.project-card {
+  /* This creates a smooth fade and scale animation */
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.project-card.hide {
+  transform: scale(0.9);
+  opacity: 0;
+  display: none;
+  /* We'll use JS to set this */
+}
