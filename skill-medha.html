@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SkillMedha CMS Platform | Yamini Sappa</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <nav class="navbar" id="mainNav">
+    <div class="container">
+      <a href="index.html" class="nav-logo">Yamini Sappa</a>
+      <div class="nav-right">
+        <ul class="nav-menu">
+          <li><a href="frontend-projects.html" id="nav-projects">Projects</a></li>
+          <li><a href="design-projects.html"   id="nav-design">Design</a></li>
+          <li><a href="index.html#about"        id="nav-about">About</a></li>
+          <li><a href="index.html#contact"      id="nav-contact">Contact</a></li>
+        </ul>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+          <i class="fas fa-moon"></i>
+        </button>
+        <a href="./Yamini_Resume_Front%20End%20Developer.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+    // Theme setup (run immediately)
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+
+    // Navbar scroll effect
+    (function () {
+      var nav = document.getElementById('mainNav');
+      if (!nav) return;
+      function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+
+    // Active link highlight
+    (function () {
+      var path = window.location.pathname.split('/').pop() || 'index.html';
+      var map = {
+        'frontend-projects.html': 'nav-projects',
+        'design-projects.html': 'nav-design',
+        'index.html': 'nav-about'
+      };
+      // sub-pages that belong to engineering
+      var engineering = ['lms-group.html','news-app.html','lead-app.html','reels-interface.html',
+        'ecommerce-dashboard.html','placement-automation.html','inventory.html',
+        'streaming-dashboard.html'];
+      // sub-pages that belong to design
+      var design = ['design-system.html','topic-prep.html','topic-prep-admin.html',
+        'skill-medha.html','all-projects.html','design-projects.html',
+        'ecommerce.html','corporate-sites.html','graphic-design.html',
+        'hospital-sites.html','wedding.html'];
+      var targetId = map[path];
+      if (!targetId) {
+        if (engineering.includes(path)) targetId = 'nav-projects';
+        else if (design.includes(path))  targetId = 'nav-design';
+      }
+      if (targetId) {
+        var el = document.getElementById(targetId);
+        if (el) el.classList.add('nav-active');
+      }
+    })();
+
+    // Theme toggle bind
+    window.addEventListener('DOMContentLoaded', () => {
+        const themeToggle = document.getElementById('theme-toggle');
+        const icon = themeToggle ? themeToggle.querySelector('i') : null;
+        
+        function updateIcon() {
+            if (!icon) return;
+            icon.className = document.documentElement.getAttribute('data-theme') === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        if (themeToggle) {
+            updateIcon();
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                if (currentTheme === 'dark') {
+                    document.documentElement.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+                updateIcon();
+            });
+        }
+    });
+  </script>
+
+  <script>
+    // Navbar scroll effect
+    (function () {
+      var nav = document.getElementById('mainNav');
+      if (!nav) return;
+      function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+    // Active link highlight
+    (function () {
+      var path = window.location.pathname.split('/').pop() || 'index.html';
+      var map = {
+        'frontend-projects.html': 'nav-projects',
+        'design-projects.html': 'nav-design',
+        'index.html': 'nav-about'
+      };
+      // sub-pages that belong to engineering
+      var engineering = ['lms-group.html','news-app.html','lead-app.html','reels-interface.html',
+        'ecommerce-dashboard.html','placement-automation.html','inventory.html',
+        'streaming-dashboard.html'];
+      // sub-pages that belong to design
+      var design = ['design-system.html','topic-prep.html','topic-prep-admin.html',
+        'skill-medha.html','all-projects.html','design-projects.html',
+        'ecommerce.html','corporate-sites.html','graphic-design.html',
+        'hospital-sites.html','wedding.html'];
+      var targetId = map[path];
+      if (!targetId) {
+        if (engineering.includes(path)) targetId = 'nav-projects';
+        else if (design.includes(path))  targetId = 'nav-design';
+      }
+      if (targetId) {
+        var el = document.getElementById(targetId);
+        if (el) el.classList.add('nav-active');
+      }
+    })();
+  </script>
+
+    <header class="hero"
+        style="min-height: 50vh; align-items: center; justify-content: center; display: flex; text-align: center;">
+        <div class="container" style="display: flex; flex-direction: column; align-items: center;">
+            <img src="./icons/skill-medha.png" alt="SkillMedha Hero"
+                style="width: 100px; height: 100px; margin-bottom: 1.5rem; object-fit: contain;" />
+            <h1 class="hero-title fade-in" style="margin-bottom: 0.5rem;">SkillMedha CMS Platform</h1>
+            <p class="hero-subtitle fade-in" style="max-width: 700px; margin: 0.5rem auto 0;">
+                A complex, multi-portal system for students, colleges, and corporate partners.
+            </p>
+        </div>
+    </header>
+
+    <section class="work-section">
+        <div class="container">
+            <div class="project-details fade-in"
+                style="background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+
+                <div style="margin-bottom: 3rem;">
+                    <h2
+                        style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
+                        Problem</h2>
+                    <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 1.05rem;">
+                        This massive project required three distinct user portals (Students, Colleges, Corporates). The
+                        main problem was a massive inconsistency and slow development cycle caused by lacking a unified
+                        Design System that could support complex dashboards for admins while remaining simple enough for
+                        students.
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 3rem;">
+                    <h2
+                        style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
+                        Research</h2>
+                    <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 1.05rem;">
+                        I audited over 150 existing screens across the platform. I identified 12 unique, inconsistent
+                        button variations, 8 competing table styles, and a complete lack of typographic hierarchy. The
+                        frontend team was spending 40% of their sprints just rewriting CSS overrides to match ad-hoc
+                        design files.
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 3rem;">
+                    <h2
+                        style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
+                        User Flow</h2>
+                    <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 1.05rem;">
+                        The flow starts with Role Based Access Control (RBAC): User Logs in &rarr; System detects Role
+                        (Student/College/Corporate) &rarr; Routes to specific portal view &rarr; Renders specific
+                        dashboard using the newly unified component architecture bound to that role's permissions.
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 3rem;">
+                    <h2
+                        style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
+                        Wireframes</h2>
+                    <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 1.05rem;">
+                        The wireframing phase ignored high-fidelity looks and instead focused entirely on structural
+                        component hierarchy. I mapped out the atomic building blocks (inputs, buttons) before assembling
+                        them into complex organisms (data tables, modal forms).
+                    </p>
+                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                        <div
+                            style="flex:1; background: #fafafa; padding: 2rem; border: 2px dashed #ccc; text-align: center; color: #aaa; border-radius: 8px;">
+                            Atomic Components Map</div>
+                        <div
+                            style="flex:1; background: #fafafa; padding: 2rem; border: 2px dashed #ccc; text-align: center; color: #aaa; border-radius: 8px;">
+                            Organism Assembly</div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 3rem;">
+                    <h2
+                        style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
+                        Final UI</h2>
+                    <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 1.05rem;">
+                        The final deliverables were not just screens, but a highly organized Figma Library utilizing
+                        full Auto-Layout, Component Variants, and deeply nested Figma Typography/Spacing Variables that
+                        bridged the gap elegantly between UX and Code.
+                    </p>
+                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                        <div
+                            style="flex:1; background: #fafafa; padding: 2rem; border: 1px solid var(--color-border); text-align: center; color: #aaa; border-radius: 8px;">
+                            Component Library UI</div>
+                        <div
+                            style="flex:1; background: #fafafa; padding: 2rem; border: 1px solid var(--color-border); text-align: center; color: #aaa; border-radius: 8px;">
+                            Application Dashboard UI</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2
+                        style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
+                        Prototype</h2>
+                    <div
+                        style="width: 100%; height: 600px; border-radius: 8px; overflow: hidden; border: 1px solid var(--color-border); background: #fafafa;">
+                        <!-- Embed from user provided link -->
+                        <iframe style="border: none;" width="100%" height="100%"
+                            src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FFI13ePHQnmnlhDa45J9eTf%2FCOnnectIndia-News-Chat%3Ft%3DhDcPRRHtsHMCg51Y-1"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="margin-top: 3rem; text-align: center;">
+                <a href="design-projects.html" class="btn btn-secondary">? Back to Design Work</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Yamini Sappa. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

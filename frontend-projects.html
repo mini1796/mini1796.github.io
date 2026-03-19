@@ -1,0 +1,393 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yamini Sappa | Frontend Engineering</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <nav class="navbar" id="mainNav">
+    <div class="container">
+      <a href="index.html" class="nav-logo">Yamini Sappa</a>
+      <div class="nav-right">
+        <ul class="nav-menu">
+          <li><a href="frontend-projects.html" id="nav-projects">Projects</a></li>
+          <li><a href="design-projects.html"   id="nav-design">Design</a></li>
+          <li><a href="index.html#about"        id="nav-about">About</a></li>
+          <li><a href="index.html#contact"      id="nav-contact">Contact</a></li>
+        </ul>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+          <i class="fas fa-moon"></i>
+        </button>
+        <a href="./Yamini_Resume_Front%20End%20Developer.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+    // Theme setup (run immediately)
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+
+    // Navbar scroll effect
+    (function () {
+      var nav = document.getElementById('mainNav');
+      if (!nav) return;
+      function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+
+    // Active link highlight
+    (function () {
+      var path = window.location.pathname.split('/').pop() || 'index.html';
+      var map = {
+        'frontend-projects.html': 'nav-projects',
+        'design-projects.html': 'nav-design',
+        'index.html': 'nav-about'
+      };
+      // sub-pages that belong to engineering
+      var engineering = ['lms-group.html','news-app.html','lead-app.html','reels-interface.html',
+        'ecommerce-dashboard.html','placement-automation.html','inventory.html',
+        'streaming-dashboard.html'];
+      // sub-pages that belong to design
+      var design = ['design-system.html','topic-prep.html','topic-prep-admin.html',
+        'skill-medha.html','all-projects.html','design-projects.html',
+        'ecommerce.html','corporate-sites.html','graphic-design.html',
+        'hospital-sites.html','wedding.html'];
+      var targetId = map[path];
+      if (!targetId) {
+        if (engineering.includes(path)) targetId = 'nav-projects';
+        else if (design.includes(path))  targetId = 'nav-design';
+      }
+      if (targetId) {
+        var el = document.getElementById(targetId);
+        if (el) el.classList.add('nav-active');
+      }
+    })();
+
+    // Theme toggle bind
+    window.addEventListener('DOMContentLoaded', () => {
+        const themeToggle = document.getElementById('theme-toggle');
+        const icon = themeToggle ? themeToggle.querySelector('i') : null;
+        
+        function updateIcon() {
+            if (!icon) return;
+            icon.className = document.documentElement.getAttribute('data-theme') === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        if (themeToggle) {
+            updateIcon();
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                if (currentTheme === 'dark') {
+                    document.documentElement.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+                updateIcon();
+            });
+        }
+    });
+  </script>
+
+  <script>
+    // Navbar scroll effect
+    (function () {
+      var nav = document.getElementById('mainNav');
+      if (!nav) return;
+      function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+    // Active link highlight
+    (function () {
+      var path = window.location.pathname.split('/').pop() || 'index.html';
+      var map = {
+        'frontend-projects.html': 'nav-projects',
+        'design-projects.html': 'nav-design',
+        'index.html': 'nav-about'
+      };
+      // sub-pages that belong to engineering
+      var engineering = ['lms-group.html','news-app.html','lead-app.html','reels-interface.html',
+        'ecommerce-dashboard.html','placement-automation.html','inventory.html',
+        'streaming-dashboard.html'];
+      // sub-pages that belong to design
+      var design = ['design-system.html','topic-prep.html','topic-prep-admin.html',
+        'skill-medha.html','all-projects.html','design-projects.html',
+        'ecommerce.html','corporate-sites.html','graphic-design.html',
+        'hospital-sites.html','wedding.html'];
+      var targetId = map[path];
+      if (!targetId) {
+        if (engineering.includes(path)) targetId = 'nav-projects';
+        else if (design.includes(path))  targetId = 'nav-design';
+      }
+      if (targetId) {
+        var el = document.getElementById(targetId);
+        if (el) el.classList.add('nav-active');
+      }
+    })();
+  </script>
+
+    <header class="hero projects-hero"
+        style="min-height: 40vh; display: flex; align-items: center; background: #fafafa; padding-top: 0;">
+        <div class="container" style="text-align: center;">
+            <h1 class="hero-title fade-in" style="font-size: 3rem; color: var(--color-text); margin-bottom: 1rem;">Frontend
+                Engineering</h1>
+            <p class="hero-subtitle fade-in"
+                style="max-width: 700px; margin: 0 auto; color: var(--color-text-secondary); font-size: 1.2rem; line-height: 1.6;">
+                A deep dive into my core technical projects, prioritizing scalable architecture, performance, and
+                responsive UI systems.
+            </p>
+        </div>
+    </header>
+
+    <section class="work-section" style="padding-top: 4rem;">
+        <div class="container fade-in">
+            <div style="display: flex; flex-direction: column; gap: 4rem; margin-bottom: 4rem;">
+
+                <!-- LMS Platform -->
+                <div
+                    style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
+                    <div
+                        style="background: #f1f2f6; height: 300px; display: flex; align-items: center; justify-content: center; position: relative; border-bottom: 1px solid var(--color-border);">
+                        <img src="./icons/LMS.png" alt="LMS Screenshot" style="height: 120px; opacity: 0.9;" />
+                    </div>
+                    <div style="padding: 2.5rem; display: flex; flex-direction: column;">
+                        <h3 style="margin-top: 0; margin-bottom: 0.5rem; font-size: 1.8rem; color: var(--color-text);">LMS
+                            Platform</h3>
+                        <p style="color: var(--color-text-secondary); font-size: 1.05rem; line-height: 1.6; margin-bottom: 1.5rem;">A
+                            massive, multi-tenant learning management system designed to serve thousands of academic
+                            users asynchronously.</p>
+
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4 style="font-size: 0.95rem; color: var(--color-text); margin-bottom: 0.5rem; font-weight: 600;">Key
+                                Features:</h4>
+                            <ul style="color: var(--color-text-secondary); line-height: 1.6; padding-left: 1.5rem;">
+                                <li>White-Label architecture for easy multi-university reskinning.</li>
+                                <li>Modular video streaming and assessment components.</li>
+                                <li>Real-time progress syncing across devices.</li>
+                            </ul>
+                        </div>
+
+                        <div style="margin-bottom: 2rem;">
+                            <h4
+                                style="font-size: 0.95rem; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">
+                                Tech Stack</h4>
+                            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                <span class="tag">HTML5/CSS3</span>
+                                <span class="tag">JavaScript (ES6+)</span>
+                                <span class="tag">CSS variables</span>
+                                <span class="tag">REST APIs</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a href="lms-group.html" class="btn btn-primary" style="padding: 0.8rem 2rem;">Read
+                                Technical Case Study &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Assessment Engine -->
+                <div
+                    style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
+                    <div
+                        style="background: #f1f2f6; height: 300px; display: flex; align-items: center; justify-content: center; position: relative; border-bottom: 1px solid var(--color-border);">
+                        <img src="./icons/topic-prep.png" alt="Assessment Engine Screenshot"
+                            style="height: 120px; opacity: 0.9;" />
+                    </div>
+                    <div style="padding: 2.5rem; display: flex; flex-direction: column;">
+                        <h3 style="margin-top: 0; margin-bottom: 0.5rem; font-size: 1.8rem; color: var(--color-text);">Assessment
+                            Engine</h3>
+                        <p style="color: var(--color-text-secondary); font-size: 1.05rem; line-height: 1.6; margin-bottom: 1.5rem;">A
+                            gamified testing engine providing randomized micro-assessments, live scoring, and
+                            offline-first caching.</p>
+
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4 style="font-size: 0.95rem; color: var(--color-text); margin-bottom: 0.5rem; font-weight: 600;">Key
+                                Features:</h4>
+                            <ul style="color: var(--color-text-secondary); line-height: 1.6; padding-left: 1.5rem;">
+                                <li>Dynamic "Journey Map" UI for student progress.</li>
+                                <li>Complex local state management for offline quiz taking.</li>
+                                <li>Automated syncing resolving conflict data via backend.</li>
+                            </ul>
+                        </div>
+
+                        <div style="margin-bottom: 2rem;">
+                            <h4
+                                style="font-size: 0.95rem; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">
+                                Tech Stack</h4>
+                            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                <span class="tag">React Native / Flutter</span>
+                                <span class="tag">Local Storage</span>
+                                <span class="tag">Firebase</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a href="topic-prep.html" class="btn btn-primary" style="padding: 0.8rem 2rem;">Read
+                                Technical Case Study &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Placement Automation Dashboard -->
+                <div
+                    style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
+                    <div
+                        style="background: #f1f2f6; height: 300px; display: flex; align-items: center; justify-content: center; position: relative; border-bottom: 1px solid var(--color-border);">
+                        <img src="./icons/dashboard.png" alt="Placement Automation Screenshot"
+                            style="height: 120px; opacity: 0.9;" onerror="this.src='./icons/analysis.png'" />
+                    </div>
+                    <div style="padding: 2.5rem; display: flex; flex-direction: column;">
+                        <h3 style="margin-top: 0; margin-bottom: 0.5rem; font-size: 1.8rem; color: var(--color-text);">Placement
+                            Automation Dashboard</h3>
+                        <p style="color: var(--color-text-secondary); font-size: 1.05rem; line-height: 1.6; margin-bottom: 1.5rem;">A
+                            unified data dashboard connecting university students to employer placement drives with
+                            automated filtering.</p>
+
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4 style="font-size: 0.95rem; color: var(--color-text); margin-bottom: 0.5rem; font-weight: 600;">Key
+                                Features:</h4>
+                            <ul style="color: var(--color-text-secondary); line-height: 1.6; padding-left: 1.5rem;">
+                                <li>Data-heavy grid components with virtualized scrolling.</li>
+                                <li>Complex multi-parameter filtering arrays.</li>
+                                <li>Real-time status updates via WebSockets.</li>
+                            </ul>
+                        </div>
+
+                        <div style="margin-bottom: 2rem;">
+                            <h4
+                                style="font-size: 0.95rem; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">
+                                Tech Stack</h4>
+                            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                <span class="tag">React</span>
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">Tailwind</span>
+                                <span class="tag">WebSockets</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a href="placement-automation.html" class="btn btn-primary"
+                                style="padding: 0.8rem 2rem;">Read Technical Case Study &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reels-style Mobile Interface -->
+                <div
+                    style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
+                    <div
+                        style="background: #f1f2f6; height: 300px; display: flex; align-items: center; justify-content: center; position: relative; border-bottom: 1px solid var(--color-border);">
+                        <img src="./icons/mobile.png" alt="Reels Interface Screenshot"
+                            style="height: 120px; opacity: 0.9;" onerror="this.src='./icons/news.png'" />
+                    </div>
+                    <div style="padding: 2.5rem; display: flex; flex-direction: column;">
+                        <h3 style="margin-top: 0; margin-bottom: 0.5rem; font-size: 1.8rem; color: var(--color-text);">Reels-Style
+                            Mobile Interface</h3>
+                        <p style="color: var(--color-text-secondary); font-size: 1.05rem; line-height: 1.6; margin-bottom: 1.5rem;">A highly
+                            performant, infinite-scrolling video feed replicating modern social media interaction
+                            models.</p>
+
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4 style="font-size: 0.95rem; color: var(--color-text); margin-bottom: 0.5rem; font-weight: 600;">Key
+                                Features:</h4>
+                            <ul style="color: var(--color-text-secondary); line-height: 1.6; padding-left: 1.5rem;">
+                                <li>Intersection Observer API for auto-playing/pausing videos.</li>
+                                <li>Memory management through DOM node recycling.</li>
+                                <li>Smooth swipe physics and gesture tracking.</li>
+                            </ul>
+                        </div>
+
+                        <div style="margin-bottom: 2rem;">
+                            <h4
+                                style="font-size: 0.95rem; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">
+                                Tech Stack</h4>
+                            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">Intersection Observer</span>
+                                <span class="tag">CSS Animations</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a href="reels-interface.html" class="btn btn-primary" style="padding: 0.8rem 2rem;">Read
+                                Technical Case Study &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive UI Experiments -->
+                <div
+                    style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
+                    <div
+                        style="background: #f1f2f6; height: 300px; display: flex; align-items: center; justify-content: center; position: relative; border-bottom: 1px solid var(--color-border);">
+                        <img src="./icons/web-design.png" alt="UI Experiments Screenshot"
+                            style="height: 120px; opacity: 0.9;" />
+                    </div>
+                    <div style="padding: 2.5rem; display: flex; flex-direction: column;">
+                        <h3 style="margin-top: 0; margin-bottom: 0.5rem; font-size: 1.8rem; color: var(--color-text);">Interactive
+                            UI Experiments</h3>
+                        <p style="color: var(--color-text-secondary); font-size: 1.05rem; line-height: 1.6; margin-bottom: 1.5rem;">A GitHub
+                            repository containing 40+ complex micro-interactions, canvas animations, and standalone
+                            widgets.</p>
+
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4 style="font-size: 0.95rem; color: var(--color-text); margin-bottom: 0.5rem; font-weight: 600;">Key
+                                Features:</h4>
+                            <ul style="color: var(--color-text-secondary); line-height: 1.6; padding-left: 1.5rem;">
+                                <li>Vanilla JS performance testing.</li>
+                                <li>Complex CSS 3D transforms and keyframes.</li>
+                                <li>Custom SVG animations and path tracking.</li>
+                            </ul>
+                        </div>
+
+                        <div style="margin-bottom: 2rem;">
+                            <h4
+                                style="font-size: 0.95rem; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">
+                                Tech Stack</h4>
+                            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                <span class="tag">HTML5 Canvas</span>
+                                <span class="tag">CSS3 Data Types</span>
+                                <span class="tag">Vanilla JS</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a href="https://github.com/mini1796" target="_blank" class="btn btn-primary"
+                                style="padding: 0.8rem 2rem;">View GitHub Repo &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Yamini Sappa. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
