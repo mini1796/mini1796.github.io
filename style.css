@@ -219,10 +219,16 @@ img {
   .navbar .container {
     flex-direction: column;
     align-items: center;
+    gap: 0.75rem;
   }
   .nav-menu {
     flex-wrap: wrap;
     justify-content: center;
+    gap: 0.25rem;
+  }
+  .nav-right {
+    flex-direction: column;
+    gap: 0.75rem;
   }
 }
 
@@ -366,23 +372,27 @@ img {
   .hero-left { padding: 0; }
   .hero-sub { margin-left: auto; margin-right: auto; }
   .hero-ctas { 
+    display: flex;
     justify-content: center; 
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1.25rem;
+    margin-top: 2rem;
   }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 420px) {
   .hero-ctas {
     flex-direction: column;
     align-items: center;
     width: 100%;
+    gap: 1rem;
   }
   .hero-ctas a {
     width: 100%;
-    max-width: 280px;
+    max-width: 300px;
     text-align: center;
     justify-content: center;
+    padding: 1rem;
   }
 }
 
