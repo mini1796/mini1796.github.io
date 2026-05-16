@@ -11,257 +11,195 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?v=12" />
     <script src="script.js" defer></script>
 </head>
 
 <body>
+    <!-- Navbar -->
     <nav class="navbar" id="mainNav">
-    <div class="container">
-      <a href="index.html" class="nav-logo">Yamini Sappa</a>
-      <div class="nav-right">
-        <ul class="nav-menu">
-          <li><a href="frontend-projects.html" id="nav-projects">Projects</a></li>
-          <li><a href="design-projects.html"   id="nav-design">Design</a></li>
-          <li><a href="index.html#about"        id="nav-about">About</a></li>
-          <li><a href="index.html#contact"      id="nav-contact">Contact</a></li>
-        </ul>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-          <i class="fas fa-moon"></i>
-        </button>
-        <a href="./Yamini_Resume_Front%20End%20Developer.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a>
-      </div>
-    </div>
-  </nav>
+        <div class="container">
+            <a href="index.html" class="nav-logo">Yamini Sappa</a>
+            
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
 
-  <script>
-    // Theme setup (run immediately)
-    (function() {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {
-          document.documentElement.setAttribute('data-theme', 'dark');
-      }
-    })();
+            <div class="nav-right" id="navRight">
+                <ul class="nav-menu">
+                    <li><a href="frontend-projects.html" id="nav-projects">Projects</a></li>
+                    <li><a href="design-projects.html" id="nav-design">Design</a></li>
+                    <li><a href="index.html#about" id="nav-about">About</a></li>
+                    <li><a href="index.html#contact" id="nav-contact">Contact</a></li>
+                </ul>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="./Yamini_Resume_Front%20End%20Developer.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a>
+            </div>
+        </div>
+    </nav>
 
-    // Navbar scroll effect
-    (function () {
-      var nav = document.getElementById('mainNav');
-      if (!nav) return;
-      function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    })();
-
-    // Active link highlight
-    (function () {
-      var path = window.location.pathname.split('/').pop() || 'index.html';
-      var map = {
-        'frontend-projects.html': 'nav-projects',
-        'design-projects.html': 'nav-design',
-        'index.html': 'nav-about'
-      };
-      // sub-pages that belong to engineering
-      var engineering = ['lms-group.html','news-app.html','lead-app.html','reels-interface.html',
-        'ecommerce-dashboard.html','placement-automation.html','inventory.html',
-        'streaming-dashboard.html'];
-      // sub-pages that belong to design
-      var design = ['design-system.html','topic-prep.html','topic-prep-admin.html',
-        'skill-medha.html','all-projects.html','design-projects.html',
-        'ecommerce.html','corporate-sites.html','graphic-design.html',
-        'hospital-sites.html','wedding.html'];
-      var targetId = map[path];
-      if (!targetId) {
-        if (engineering.includes(path)) targetId = 'nav-projects';
-        else if (design.includes(path))  targetId = 'nav-design';
-      }
-      if (targetId) {
-        var el = document.getElementById(targetId);
-        if (el) el.classList.add('nav-active');
-      }
-    })();
-
-    // Theme toggle bind
-    window.addEventListener('DOMContentLoaded', () => {
-        const themeToggle = document.getElementById('theme-toggle');
-        const icon = themeToggle ? themeToggle.querySelector('i') : null;
-        
-        function updateIcon() {
-            if (!icon) return;
-            icon.className = document.documentElement.getAttribute('data-theme') === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-        }
-
-        if (themeToggle) {
-            updateIcon();
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                if (currentTheme === 'dark') {
-                    document.documentElement.removeAttribute('data-theme');
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    localStorage.setItem('theme', 'dark');
-                }
-                updateIcon();
-            });
-        }
-    });
-  </script>
-
-  <script>
-    // Navbar scroll effect
-    (function () {
-      var nav = document.getElementById('mainNav');
-      if (!nav) return;
-      function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    })();
-    // Active link highlight
-    (function () {
-      var path = window.location.pathname.split('/').pop() || 'index.html';
-      var map = {
-        'frontend-projects.html': 'nav-projects',
-        'design-projects.html': 'nav-design',
-        'index.html': 'nav-about'
-      };
-      // sub-pages that belong to engineering
-      var engineering = ['lms-group.html','news-app.html','lead-app.html','reels-interface.html',
-        'ecommerce-dashboard.html','placement-automation.html','inventory.html',
-        'streaming-dashboard.html'];
-      // sub-pages that belong to design
-      var design = ['design-system.html','topic-prep.html','topic-prep-admin.html',
-        'skill-medha.html','all-projects.html','design-projects.html',
-        'ecommerce.html','corporate-sites.html','graphic-design.html',
-        'hospital-sites.html','wedding.html'];
-      var targetId = map[path];
-      if (!targetId) {
-        if (engineering.includes(path)) targetId = 'nav-projects';
-        else if (design.includes(path))  targetId = 'nav-design';
-      }
-      if (targetId) {
-        var el = document.getElementById(targetId);
-        if (el) el.classList.add('nav-active');
-      }
-    })();
-  </script>
-
-    <header class="hero projects-hero res-padding"
-        style="min-height: 40vh; display: flex; align-items: center; background: #fafafa; padding-top: 0;">
-        <div class="container" style="text-align: center;">
-            <h1 class="hero-title fade-in res-h1" style="color: var(--color-text); margin-bottom: 1rem;">Product Design
-                & UI/UX</h1>
-            <p class="hero-subtitle fade-in"
-                style="max-width: 700px; margin: 0 auto; color: var(--color-text-secondary); font-size: 1.2rem; line-height: 1.6;">
-                A deep dive into my core design projects, prioritizing scalable architecture, performance, and
-                responsive UI systems.
+    <!-- Design Hero -->
+    <header class="cs-hero">
+        <div class="hero-bg-visuals">
+            <div class="blob blob-2" style="background: rgba(168, 85, 247, 0.1);"></div>
+            <div class="blob blob-3" style="background: rgba(249, 115, 22, 0.1);"></div>
+        </div>
+        <div class="cs-container">
+            <h1 class="res-h1 fade-in">Product Design & UI/UX</h1>
+            <p class="hero-sub fade-in">
+                Focusing on user-centric research, atomic design systems, and high-fidelity 
+                prototypes that bridge the gap between user needs and business goals.
             </p>
         </div>
     </header>
 
-    <section class="work-section" style="padding-top: 4rem;">
-        <div class="container fade-in">
-            <div style="display: flex; flex-direction: column; gap: 4rem; margin-bottom: 4rem;">
-
-                <!-- Case Study 1: Lead Management App -->
-                <div
-                    style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
-
-                    <!-- Prototype Preview (Mockup) -->
-                    <div class="res-img-height"
-                        style="background: #f1f2f6; display: flex; align-items: center; justify-content: center; position: relative; border-bottom: 1px solid var(--color-border);">
-                        <iframe style="border: none;" width="100%" height="100%"
-                            src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FFI13ePHQnmnlhDa45J9eTf%2FCOnnectIndia-News-Chat%3Ft%3DhDcPRRHtsHMCg51Y-1"
-                            allowfullscreen></iframe>
-                    </div>
-
-                    <div class="res-padding" style="display: flex; flex-direction: column;">
-                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                            <img src="./icons/lead-management.png" alt="Lead Management Icon" style="width: 40px;" />
-                            <h3 class="res-h3" style="margin: 0; color: var(--color-text);">Lead Management System Mobile App
-                            </h3>
+    <!-- Design Grid -->
+    <section class="work-section" style="background: var(--color-bg-secondary);">
+        <div class="container">
+            <div class="project-grid fade-in">
+                
+                <!-- TEJ App -->
+                <div class="fp-card">
+                    <div class="fp-thumb" style="background: linear-gradient(135deg, #fff5e8 0%, #fde8c8 100%);">
+                        <div class="fp-thumb-placeholder">
+                            <img loading="lazy" src="./icons/web-design.png" alt="Reels Interface" />
                         </div>
+                    </div>
+                    <div class="fp-body">
+                        <span class="fp-tag">Interaction Design · Mobile</span>
+                        <h3 class="fp-title">TEJ App</h3>
+                        <p class="fp-desc">Lead Designer for a fast-paced 'reels' style current affairs app. Conceptualized the end-to-end UI/UX, motion language, and high-fidelity prototypes for seamless mobile learning.</p>
+                        <div class="fp-stack">
+                            <span class="fp-pill">Figma</span>
+                            <span class="fp-pill">Motion Design</span>
+                            <span class="fp-pill">Prototyping</span>
+                        </div>
+                        <a href="reels-interface.html" class="fp-link">
+                            Case Study <i class="fas fa-arrow-right fp-arrow"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Lead Management App -->
+                <div class="fp-card">
+                    <div class="fp-thumb" style="background: linear-gradient(135deg, #fff5e8 0%, #fde8c8 100%);">
+                        <div class="fp-thumb-placeholder">
+                            <img loading="lazy" src="./icons/lead-management.png" alt="Lead Management" />
+                        </div>
+                    </div>
+                    <div class="fp-body">
+                        <span class="fp-tag">Mobile CRM · UX Research</span>
+                        <h3 class="fp-title">Lead Management App</h3>
+                        <p class="fp-desc">A frictionless mobile CRM designed for field sales. Transforms complex lead funnels into a swipe-friendly, ergonomic layout capturing data in seconds.</p>
+                        <div class="fp-stack">
+                            <span class="fp-pill">Figma</span>
+                            <span class="fp-pill">User Flow</span>
+                            <span class="fp-pill">Prototyping</span>
+                        </div>
+                        <a href="lead-app.html" class="fp-link">
+                            Case Study <i class="fas fa-arrow-right fp-arrow"></i>
+                        </a>
+                    </div>
+                </div>
 
-                        <p style="color: var(--color-text-secondary); font-size: 1.05rem; line-height: 1.6; margin-bottom: 2rem;">
-                            A frictionless mobile CRM designed specifically for on-the-go field sales teams. It
-                            transforms complex lead funnels into a swipe-friendly, ergonomic thumb-zone layout,
-                            capturing data in under 10 seconds.
-                        </p>
-
-                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                            <a href="https://www.figma.com/design/FI13ePHQnmnlhDa45J9eTf/COnnectIndia-News-Chat"
-                                target="_blank" class="btn btn-primary" style="padding: 0.8rem 2rem;">View Figma
-                                &rarr;</a>
-                            <a href="lead-app.html" class="btn btn-secondary" style="padding: 0.8rem 2rem;">View Case
-                                Study</a>
+                <!-- SkillMedha CMS -->
+                <div class="fp-card">
+                    <div class="fp-thumb" style="background: linear-gradient(135deg, #f3ecff 0%, #e4d5ff 100%);">
+                        <div class="fp-thumb-placeholder">
+                            <img loading="lazy" src="./icons/skill-medha.png" alt="SkillMedha" />
+                        </div>
+                    </div>
+                    <div class="fp-body">
+                        <span class="fp-tag">Design System · SaaS</span>
+                        <h3 class="fp-title">Skill Medha</h3>
+                        <p class="fp-desc">A unified, atomic design system built to resolve inconsistent UI states across a three-portal SaaS product. Consolidates 100+ components.</p>
+                        <div class="fp-glimpses">
+                            <img src="./images/skillmedha1.jpg" alt="Glimpse 1" loading="lazy">
+                            <img src="./images/skillmedha2.jpg" alt="Glimpse 2" loading="lazy">
+                            <img src="./images/skillmedha3.jpg" alt="Glimpse 3" loading="lazy">
+                            <img src="./images/skillmedha4.jpg" alt="Glimpse 4" loading="lazy">
+                        </div>
+                        <div class="fp-stack">
+                            <span class="fp-pill">Atomic Design</span>
+                            <span class="fp-pill">Figma Library</span>
+                            <span class="fp-pill">Governance</span>
+                        </div>
+                        <div class="fp-actions">
+                            <a href="skill-medha.html" class="fp-link">
+                                Case Study <i class="fas fa-arrow-right fp-arrow"></i>
+                            </a>
+                            <a href="https://www.figma.com/proto/wvFsYMtpN8sBMm82S8o3En/College-Management-System?node-id=0-1&t=JZKS1XRewdbjmX1M-1" target="_blank" class="fp-link">
+                                Prototype <i class="fab fa-figma"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Case Study 2: SkillMedha -->
-                <div
-                    style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
-
-                    <!-- Prototype Preview (Mockup/Image) -->
-                    <div class="res-img-height"
-                        style="background: #f1f2f6; display: flex; align-items: center; justify-content: center; position: relative; border-bottom: 1px solid var(--color-border);">
-                        <!-- Since the user only gave one figma link, reusing it or using an image placeholder -->
-                        <div
-                            style="color: var(--color-text-secondary); font-size: 1.2rem; display:flex; flex-direction: column; align-items:center; gap: 1rem;">
-                            <i class="fab fa-figma" style="font-size: 3rem; color: #FF7262;"></i>
-                            <p>SkillMedha Figma Prototype Preview</p>
+                <!-- News Super App -->
+                <div class="fp-card">
+                    <div class="fp-thumb" style="background: linear-gradient(135deg, #e8f4fd 0%, #cde8f9 100%);">
+                        <div class="fp-thumb-placeholder">
+                            <img loading="lazy" src="./icons/news.png" alt="News App" />
                         </div>
                     </div>
-
-                    <div class="res-padding" style="display: flex; flex-direction: column;">
-                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                            <img src="./icons/skill-medha.png" alt="SkillMedha Icon" style="width: 40px;" />
-                            <h3 class="res-h3" style="margin: 0; color: var(--color-text);">SkillMedha CMS Design System</h3>
+                    <div class="fp-body">
+                        <span class="fp-tag">Super App · Product Design</span>
+                        <h3 class="fp-title">News App</h3>
+                        <p class="fp-desc">Solving context-switching by securely embedding a social feed, encrypted chat, and an educational LMS under a single architecture.</p>
+                        <div class="fp-stack">
+                            <span class="fp-pill">Product Strategy</span>
+                            <span class="fp-pill">Mobile Architecture</span>
+                            <span class="fp-pill">Hi-Fi</span>
                         </div>
-
-                        <p style="color: var(--color-text-secondary); font-size: 1.05rem; line-height: 1.6; margin-bottom: 2rem;">
-                            A unified, atomic design system built to resolve immense frontend debt across a three-portal
-                            SaaS product. It consolidates inconsistent UI states into highly governed, centralized Figma
-                            components.
-                        </p>
-
-                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                            <a href="#" class="btn btn-primary" style="padding: 0.8rem 2rem;">View Figma &rarr;</a>
-                            <a href="skill-medha.html" class="btn btn-secondary" style="padding: 0.8rem 2rem;">View Case
-                                Study</a>
-                        </div>
+                        <a href="news-app.html" class="fp-link">
+                            Case Study <i class="fas fa-arrow-right fp-arrow"></i>
+                        </a>
                     </div>
                 </div>
 
-                <!-- Case Study 3: News App -->
-                <div
-                    style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
-
-                    <div class="res-img-height"
-                        style="background: #f1f2f6; display: flex; align-items: center; justify-content: center; position: relative; border-bottom: 1px solid var(--color-border);">
-                        <iframe style="border: none;" width="100%" height="100%"
-                            src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FFI13ePHQnmnlhDa45J9eTf%2FCOnnectIndia-News-Chat%3Ft%3DhDcPRRHtsHMCg51Y-1"
-                            allowfullscreen></iframe>
+                <!-- Corporate & Landing Pages -->
+                <div class="fp-card">
+                    <div class="fp-thumb" style="background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);">
+                        <div class="fp-thumb-placeholder">
+                            <img loading="lazy" src="./icons/web-design.png" alt="Corporate Websites" />
+                        </div>
                     </div>
-
-                    <div class="res-padding" style="display: flex; flex-direction: column;">
-                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                            <img src="./icons/news.png" alt="News Chat LMS App Mockup" style="width: 40px;" />
-                            <h3 class="res-h3" style="margin: 0; color: var(--color-text);">News + Chat + LMS Mobile App</h3>
+                    <div class="fp-body">
+                        <span class="fp-tag">Corporate Redesign & Development</span>
+                        <h3 class="fp-title">Corporate Website & Landing Pages</h3>
+                        <p class="fp-desc">Led the full redesign and development of various high-conversion landing pages and corporate sites, including Vivtej Software Solutions.</p>
+                        <div class="fp-stack">
+                            <span class="fp-pill">Visual Identity</span>
+                            <span class="fp-pill">UX Strategy</span>
+                            <span class="fp-pill">Prototyping</span>
                         </div>
+                        <a href="corporate-sites.html" class="fp-link">
+                            Case Study <i class="fas fa-arrow-right fp-arrow"></i>
+                        </a>
+                    </div>
+                </div>
 
-                        <p style="color: var(--color-text-secondary); font-size: 1.05rem; line-height: 1.6; margin-bottom: 2rem;">
-                            A multi-purpose 'Super App' solving user context-switching by securely embedding a social
-                            feed, encrypted WhatsApp-style chat, and an educational LMS under a single, unified tab
-                            architecture.
-                        </p>
-
-                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                            <a href="https://www.figma.com/design/FI13ePHQnmnlhDa45J9eTf/COnnectIndia-News-Chat"
-                                target="_blank" class="btn btn-primary" style="padding: 0.8rem 2rem;">View Figma
-                                &rarr;</a>
-                            <a href="news-app.html" class="btn btn-secondary" style="padding: 0.8rem 2rem;">View Case
-                                Study</a>
+                <!-- 50+ Small Webpages -->
+                <div class="fp-card">
+                    <div class="fp-thumb" style="background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%);">
+                        <div class="fp-thumb-placeholder">
+                            <img loading="lazy" src="./icons/analysis.png" alt="Animations" />
                         </div>
+                    </div>
+                    <div class="fp-body">
+                        <span class="fp-tag">Interactive Webpages & Animations</span>
+                        <h3 class="fp-title">50+ Webpages & Animations</h3>
+                        <p class="fp-desc">Developed a diverse portfolio of 40+ interactive webpages focusing on advanced CSS/JS animations and micro-interactions to enhance user experience.</p>
+                        <div class="fp-stack">
+                            <span class="fp-pill">Interaction Design</span>
+                            <span class="fp-pill">Micro-animations</span>
+                            <span class="fp-pill">Visual UX</span>
+                        </div>
+                        <a href="index.html#contact" class="fp-link">
+                            View Experiments <i class="fas fa-arrow-right fp-arrow"></i>
+                        </a>
                     </div>
                 </div>
 
@@ -269,12 +207,17 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <p>&copy; 2025 Yamini Sappa. All rights reserved.</p>
         </div>
     </footer>
 
+    <script>
+        // Set active nav link
+        document.getElementById('nav-design').classList.add('nav-active');
+    </script>
 </body>
 
 </html>

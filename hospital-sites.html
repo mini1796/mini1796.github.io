@@ -4,208 +4,103 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hospital & Clinic Websites | Yamini Sappa</title>
+    <title>Healthcare Websites | Yamini Sappa</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?v=12" />
     <script src="script.js" defer></script>
 </head>
 
 <body>
+    <!-- Navbar -->
     <nav class="navbar" id="mainNav">
-    <div class="container">
-      <a href="index.html" class="nav-logo">Yamini Sappa</a>
-      <div class="nav-right">
-        <ul class="nav-menu">
-          <li><a href="frontend-projects.html" id="nav-projects">Projects</a></li>
-          <li><a href="design-projects.html"   id="nav-design">Design</a></li>
-          <li><a href="index.html#about"        id="nav-about">About</a></li>
-          <li><a href="index.html#contact"      id="nav-contact">Contact</a></li>
-        </ul>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-          <i class="fas fa-moon"></i>
-        </button>
-        <a href="./Yamini_Resume_Front%20End%20Developer.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a>
-      </div>
-    </div>
-  </nav>
+        <div class="container">
+            <a href="index.html" class="nav-logo">Yamini Sappa</a>
+            
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
 
-  <script>
-    // Theme setup (run immediately)
-    (function() {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {
-          document.documentElement.setAttribute('data-theme', 'dark');
-      }
-    })();
+            <div class="nav-right" id="navRight">
+                <ul class="nav-menu">
+                    <li><a href="frontend-projects.html" id="nav-projects">Projects</a></li>
+                    <li><a href="design-projects.html" id="nav-design">Design</a></li>
+                    <li><a href="index.html#about" id="nav-about">About</a></li>
+                    <li><a href="index.html#contact" id="nav-contact">Contact</a></li>
+                </ul>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="./Yamini_Resume_Front%20End%20Developer.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a>
+            </div>
+        </div>
+    </nav>
 
-    // Navbar scroll effect
-    (function () {
-      var nav = document.getElementById('mainNav');
-      if (!nav) return;
-      function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    })();
-
-    // Active link highlight
-    (function () {
-      var path = window.location.pathname.split('/').pop() || 'index.html';
-      var map = {
-        'frontend-projects.html': 'nav-projects',
-        'design-projects.html': 'nav-design',
-        'index.html': 'nav-about'
-      };
-      // sub-pages that belong to engineering
-      var engineering = ['lms-group.html','news-app.html','lead-app.html','reels-interface.html',
-        'ecommerce-dashboard.html','placement-automation.html','inventory.html',
-        'streaming-dashboard.html'];
-      // sub-pages that belong to design
-      var design = ['design-system.html','topic-prep.html','topic-prep-admin.html',
-        'skill-medha.html','all-projects.html','design-projects.html',
-        'ecommerce.html','corporate-sites.html','graphic-design.html',
-        'hospital-sites.html','wedding.html'];
-      var targetId = map[path];
-      if (!targetId) {
-        if (engineering.includes(path)) targetId = 'nav-projects';
-        else if (design.includes(path))  targetId = 'nav-design';
-      }
-      if (targetId) {
-        var el = document.getElementById(targetId);
-        if (el) el.classList.add('nav-active');
-      }
-    })();
-
-    // Theme toggle bind
-    window.addEventListener('DOMContentLoaded', () => {
-        const themeToggle = document.getElementById('theme-toggle');
-        const icon = themeToggle ? themeToggle.querySelector('i') : null;
-        
-        function updateIcon() {
-            if (!icon) return;
-            icon.className = document.documentElement.getAttribute('data-theme') === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-        }
-
-        if (themeToggle) {
-            updateIcon();
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                if (currentTheme === 'dark') {
-                    document.documentElement.removeAttribute('data-theme');
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    localStorage.setItem('theme', 'dark');
-                }
-                updateIcon();
-            });
-        }
-    });
-  </script>
-
-  <script>
-    // Navbar scroll effect
-    (function () {
-      var nav = document.getElementById('mainNav');
-      if (!nav) return;
-      function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    })();
-    // Active link highlight
-    (function () {
-      var path = window.location.pathname.split('/').pop() || 'index.html';
-      var map = {
-        'frontend-projects.html': 'nav-projects',
-        'design-projects.html': 'nav-design',
-        'index.html': 'nav-about'
-      };
-      // sub-pages that belong to engineering
-      var engineering = ['lms-group.html','news-app.html','lead-app.html','reels-interface.html',
-        'ecommerce-dashboard.html','placement-automation.html','inventory.html',
-        'streaming-dashboard.html'];
-      // sub-pages that belong to design
-      var design = ['design-system.html','topic-prep.html','topic-prep-admin.html',
-        'skill-medha.html','all-projects.html','design-projects.html',
-        'ecommerce.html','corporate-sites.html','graphic-design.html',
-        'hospital-sites.html','wedding.html'];
-      var targetId = map[path];
-      if (!targetId) {
-        if (engineering.includes(path)) targetId = 'nav-projects';
-        else if (design.includes(path))  targetId = 'nav-design';
-      }
-      if (targetId) {
-        var el = document.getElementById(targetId);
-        if (el) el.classList.add('nav-active');
-      }
-    })();
-  </script>
-
-    <header class="hero res-padding"
-        style="min-height: 50vh; align-items: center; justify-content: center; display: flex; text-align: center;">
-        <div class="container" style="display: flex; flex-direction: column; align-items: center;">
-            <img src="./icons/clinic.png" alt="Hospital Sites Hero"
-                style="width: 100px; height: 100px; margin-bottom: 1.5rem; object-fit: contain;" />
-            <h1 class="hero-title fade-in res-h1" style="margin-bottom: 0.5rem;">Hospital & Clinic Websites</h1>
-            <p class="hero-subtitle fade-in" style="max-width: 700px; margin: 0.5rem auto 0;">
-                A series of accessible, trust-focused websites for healthcare providers.
-            </p>
+    <!-- Case Study Hero -->
+    <header class="cs-hero">
+        <div class="hero-bg-visuals">
+            <div class="blob blob-1" style="background: rgba(34, 197, 94, 0.1);"></div>
+            <div class="blob blob-2" style="background: rgba(91, 108, 255, 0.1);"></div>
+        </div>
+        <div class="cs-container">
+            <img loading="lazy" src="./icons/clinic.png" alt="Clinic Icon" style="height: 80px; margin-bottom: 2rem;" />
+            <h1 class="res-h1 fade-in">Healthcare & Clinic Websites</h1>
+            <p class="hero-sub fade-in">A series of high-accessibility, trust-focused digital platforms engineered for healthcare providers and clinical specialists.</p>
         </div>
     </header>
 
-    <section class="work-section">
-        <div class="container">
-            <div class="project-details fade-in res-padding"
-                style="background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+    <!-- Case Study Content -->
+    <main class="cs-container">
+        <div class="cs-content-card fade-in">
+            
+            <section class="cs-section">
+                <h2 class="cs-section-title">The Requirement</h2>
+                <p class="cs-text">
+                    Healthcare platforms demand a specialized UX strategy: they must establish immediate clinical trust and ensure critical information—like booking availability and specialist profiles—is discoverable within seconds.
+                </p>
+            </section>
 
-                <div style="margin-bottom: 3rem;">
-                    <h2 class="res-h2"
-                        style="margin-bottom: 1rem; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
-                        The Requirement</h2>
-                    <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 1.05rem;">
-                        Healthcare websites require a different approach: they must build trust immediately and make
-                        information (like booking times and doctors' profiles) extremely easy to find.
-                    </p>
+            <section class="cs-section">
+                <h2 class="cs-section-title">Strategy & Execution</h2>
+                <p class="cs-text">
+                    I prioritized AA accessibility standards and implemented calming, trust-evoking color palettes. The engineering process focused on extreme performance optimization to ensure fast loading speeds for users who may be accessing the site in urgent situations.
+                </p>
+                <div class="cs-image-grid">
+                    <div class="cs-image-placeholder">Patient Booking Portal</div>
+                    <div class="cs-image-placeholder">Specialist Profile Directory</div>
                 </div>
+            </section>
 
-                <div style="margin-bottom: 3rem;">
-                    <h2 class="res-h2"
-                        style="margin-bottom: 1rem; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
-                        My Role & Process</h2>
-                    <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 1.05rem;">
-                        I focused on accessibility and calming color palettes (blues and greens). The development
-                        prioritized fast loading speeds for users potentially accessing the site in emergencies.
-                    </p>
-                </div>
+            <section class="cs-section">
+                <h2 class="cs-section-title">Outcome</h2>
+                <p class="cs-text">
+                    Significantly improved the patient journey by streamlining the inquiry and appointment booking processes, resulting in higher digital engagement for the clinical teams.
+                </p>
+            </section>
 
-                <div>
-                    <h2 class="res-h2"
-                        style="margin-bottom: 1rem; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
-                        The Outcome</h2>
-                    <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 1.05rem;">
-                        Improved patient experience by simplifying the appointment inquiry process.
-                    </p>
-                </div>
-
-            </div>
-
-            <div style="margin-top: 3rem; text-align: center;">
-                <a href="all-projects.html" class="btn btn-secondary">? Back to All Projects</a>
+            <div style="margin-top: 4rem; text-align: center;">
+                <a href="all-projects.html" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left" style="margin-right: 0.5rem;"></i> Back to All Projects
+                </a>
             </div>
         </div>
-    </section>
+    </main>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <p>&copy; 2025 Yamini Sappa. All rights reserved.</p>
         </div>
     </footer>
 
+    <script>
+        // Set active nav link
+        document.getElementById('nav-design').classList.add('nav-active');
+    </script>
 </body>
 
 </html>

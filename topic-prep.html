@@ -11,228 +11,121 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?v=12" />
     <script src="script.js" defer></script>
 </head>
 
 <body>
+    <!-- Navbar -->
     <nav class="navbar" id="mainNav">
-    <div class="container">
-      <a href="index.html" class="nav-logo">Yamini Sappa</a>
-      <div class="nav-right">
-        <ul class="nav-menu">
-          <li><a href="frontend-projects.html" id="nav-projects">Projects</a></li>
-          <li><a href="design-projects.html"   id="nav-design">Design</a></li>
-          <li><a href="index.html#about"        id="nav-about">About</a></li>
-          <li><a href="index.html#contact"      id="nav-contact">Contact</a></li>
-        </ul>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-          <i class="fas fa-moon"></i>
-        </button>
-        <a href="./Yamini_Resume_Front%20End%20Developer.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a>
-      </div>
-    </div>
-  </nav>
+        <div class="container">
+            <a href="index.html" class="nav-logo">Yamini Sappa</a>
+            
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
 
-  <script>
-    // Theme setup (run immediately)
-    (function() {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {
-          document.documentElement.setAttribute('data-theme', 'dark');
-      }
-    })();
+            <div class="nav-right" id="navRight">
+                <ul class="nav-menu">
+                    <li><a href="frontend-projects.html" id="nav-projects">Projects</a></li>
+                    <li><a href="design-projects.html" id="nav-design">Design</a></li>
+                    <li><a href="index.html#about" id="nav-about">About</a></li>
+                    <li><a href="index.html#contact" id="nav-contact">Contact</a></li>
+                </ul>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="./Yamini_Resume_Front%20End%20Developer.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a>
+            </div>
+        </div>
+    </nav>
 
-    // Navbar scroll effect
-    (function () {
-      var nav = document.getElementById('mainNav');
-      if (!nav) return;
-      function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    })();
-
-    // Active link highlight
-    (function () {
-      var path = window.location.pathname.split('/').pop() || 'index.html';
-      var map = {
-        'frontend-projects.html': 'nav-projects',
-        'design-projects.html': 'nav-design',
-        'index.html': 'nav-about'
-      };
-      // sub-pages that belong to engineering
-      var engineering = ['lms-group.html','news-app.html','lead-app.html','reels-interface.html',
-        'ecommerce-dashboard.html','placement-automation.html','inventory.html',
-        'streaming-dashboard.html'];
-      // sub-pages that belong to design
-      var design = ['design-system.html','topic-prep.html','topic-prep-admin.html',
-        'skill-medha.html','all-projects.html','design-projects.html',
-        'ecommerce.html','corporate-sites.html','graphic-design.html',
-        'hospital-sites.html','wedding.html'];
-      var targetId = map[path];
-      if (!targetId) {
-        if (engineering.includes(path)) targetId = 'nav-projects';
-        else if (design.includes(path))  targetId = 'nav-design';
-      }
-      if (targetId) {
-        var el = document.getElementById(targetId);
-        if (el) el.classList.add('nav-active');
-      }
-    })();
-
-    // Theme toggle bind
-    window.addEventListener('DOMContentLoaded', () => {
-        const themeToggle = document.getElementById('theme-toggle');
-        const icon = themeToggle ? themeToggle.querySelector('i') : null;
-        
-        function updateIcon() {
-            if (!icon) return;
-            icon.className = document.documentElement.getAttribute('data-theme') === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-        }
-
-        if (themeToggle) {
-            updateIcon();
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                if (currentTheme === 'dark') {
-                    document.documentElement.removeAttribute('data-theme');
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    localStorage.setItem('theme', 'dark');
-                }
-                updateIcon();
-            });
-        }
-    });
-  </script>
-
-  <script>
-    // Navbar scroll effect
-    (function () {
-      var nav = document.getElementById('mainNav');
-      if (!nav) return;
-      function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    })();
-    // Active link highlight
-    (function () {
-      var path = window.location.pathname.split('/').pop() || 'index.html';
-      var map = {
-        'frontend-projects.html': 'nav-projects',
-        'design-projects.html': 'nav-design',
-        'index.html': 'nav-about'
-      };
-      // sub-pages that belong to engineering
-      var engineering = ['lms-group.html','news-app.html','lead-app.html','reels-interface.html',
-        'ecommerce-dashboard.html','placement-automation.html','inventory.html',
-        'streaming-dashboard.html'];
-      // sub-pages that belong to design
-      var design = ['design-system.html','topic-prep.html','topic-prep-admin.html',
-        'skill-medha.html','all-projects.html','design-projects.html',
-        'ecommerce.html','corporate-sites.html','graphic-design.html',
-        'hospital-sites.html','wedding.html'];
-      var targetId = map[path];
-      if (!targetId) {
-        if (engineering.includes(path)) targetId = 'nav-projects';
-        else if (design.includes(path))  targetId = 'nav-design';
-      }
-      if (targetId) {
-        var el = document.getElementById(targetId);
-        if (el) el.classList.add('nav-active');
-      }
-    })();
-  </script>
-
-    <header class="hero res-padding"
-        style="min-height: 50vh; align-items: center; justify-content: center; display: flex; text-align: center;">
-        <div class="container" style="display: flex; flex-direction: column; align-items: center;">
-            <!-- Icon -->
-            <img src="./icons/topic-prep.png" alt="TopicPrep Hero"
-                style="width: 100px; height: 100px; margin-bottom: 1.5rem; object-fit: contain;" />
-            <!-- Title -->
-            <h1 class="hero-title fade-in res-h1" style="margin-bottom: 0.5rem;">TopicPrep Mobile App</h1>
-            <!-- Subtitle -->
-            <p class="hero-subtitle fade-in" style="max-width: 700px; margin: 0.5rem auto 0;">
-                A gamified mobile learning app designed to boost student engagement and retention.
-            </p>
+    <!-- Case Study Hero -->
+    <header class="cs-hero" style="min-height: 420px; padding-bottom: 140px;">
+        <div class="hero-bg-visuals">
+            <div class="blob blob-3" style="background: rgba(168, 85, 247, 0.15);"></div>
+            <div class="blob blob-1" style="background: rgba(34, 197, 94, 0.15);"></div>
+        </div>
+        <div class="cs-container">
+            <h1 class="res-h1 fade-in" style="margin-bottom: 1rem;">Topic Prep: Govt Exam Platform</h1>
+            <p class="hero-sub fade-in" style="max-width: 800px; margin: 0 auto;">A comprehensive government exam preparation platform architected to optimize student learning, retention, and engagement through gamified workflows.</p>
         </div>
     </header>
 
-    <section class="work-section">
-        <div class="container">
-            <div class="project-details fade-in res-padding"
-                style="background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+    <!-- Case Study Content -->
+    <main class="cs-container">
+        <div class="cs-content-card fade-in" style="margin-top: -60px;">
+            
+            <!-- Engagement Impact Stats Bar -->
 
-                <div style="margin-bottom: 3rem;">
-                    <h2 class="res-h2"
-                        style="margin-bottom: 1rem; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
-                        Screenshots</h2>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-                        <div
-                            style="background: #fafafa; height: 250px; border-radius: 8px; border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; color: #aaa;">
-                            Student Journey Map Interface</div>
-                        <div
-                            style="background: #fafafa; height: 250px; border-radius: 8px; border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; color: #aaa;">
-                            Live Assessment Environment</div>
+            <section class="cs-section">
+                <h2 class="cs-section-title">The Role & Architecture</h2>
+                <p class="cs-text">
+                    I architected the entire platform from initial wireframing and prototyping in Figma to the final frontend deployment. My focus was on improving student retention through an intuitive navigation system for massive content libraries, including multi-tier course structures and sub-topic hierarchies.
+                </p>
+                <div class="tech-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem;">
+                    <div style="background: var(--color-bg); padding: 2rem; border-radius: 20px; border: 1px solid var(--color-border);">
+                        <i class="fas fa-sitemap" style="color: #3b82f6; font-size: 1.5rem; margin-bottom: 1.2rem; display: block;"></i>
+                        <h4 style="margin: 0 0 0.75rem 0; font-size: 1.1rem;">Library Navigation</h4>
+                        <p style="font-size: 0.95rem; margin: 0; color: var(--color-text-secondary); line-height: 1.6;">Engineered a multi-tier navigation system to handle complex course hierarchies.</p>
+                    </div>
+                    <div style="background: var(--color-bg); padding: 2rem; border-radius: 20px; border: 1px solid var(--color-border);">
+                        <i class="fas fa-mobile-alt" style="color: #8b5cf6; font-size: 1.5rem; margin-bottom: 1.2rem; display: block;"></i>
+                        <h4 style="margin: 0 0 0.75rem 0; font-size: 1.1rem;">Mobile First</h4>
+                        <p style="font-size: 0.95rem; margin: 0; color: var(--color-text-secondary); line-height: 1.6;">Optimized the assessment experience for one-handed mobile usage.</p>
                     </div>
                 </div>
+            </section>
 
-                <div style="margin-bottom: 3rem;">
-                    <h2 class="res-h2"
-                        style="margin-bottom: 1rem; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
-                        Architecture</h2>
-                    <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 1.05rem;">
-                        The mobile application communicates with a central RESTful backend. It employs an offline-first
-                        caching strategy via LocalStorage and IndexedDB (on web wrappers), allowing students to complete
-                        quizzes in low-connectivity
-                        environments. Upon regaining connection, a background sync worker resolves data conflicts and
-                        reliably posts metrics back to the server.
-                    </p>
+            <section class="cs-section">
+                <h2 class="cs-section-title">Gamification Strategy</h2>
+                <div class="cs-image-grid" style="margin-bottom: 2.5rem;">
+                    <div class="cs-image-placeholder" style="height: 300px;">Figma Wireframes & Prototypes</div>
+                    <div class="cs-image-placeholder" style="height: 300px;">Complex Sub-topic Navigation</div>
                 </div>
+                <p class="cs-text" style="margin-bottom: 2rem;">
+                    To drive daily usage, I implemented several gamified UI elements that directly impacted user behavior:
+                </p>
+                <ul class="cs-list">
+                    <li><strong>Streak Trackers:</strong> Visual daily targets that encouraged consistent study habits.</li>
+                    <li><strong>Achievement Badges:</strong> Milestone-based rewards that gamified the learning process and celebrated progress.</li>
+                    <li><strong>User Flow Analysis:</strong> Continuous refinement of navigation paths to ensure students could access materials with minimal friction.</li>
+                </ul>
+            </section>
 
-                <div style="margin-bottom: 3rem;">
-                    <h2 class="res-h2"
-                        style="margin-bottom: 1rem; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
-                        Challenges Solved</h2>
-                    <ul
-                        style="color: var(--color-text-secondary); line-height: 1.8; font-size: 1.05rem; list-style-type: disc; padding-left: 1.5rem;">
-                        <li><strong>Data Desync in Spotty Networks:</strong> Engineered a custom queue-based fetch
-                            wrapper that intercepts failed requests, writes the payloads to local storage, and
-                            iteratively retries them with exponential backoff.</li>
-                        <li><strong>Heavy Canvas Animations:</strong> The gamified "Journey Map" originally caused
-                            stuttering on low-end Android devices. Migrated from heavy CSS repaints to a
-                            hardware-accelerated SVG implementation, rescuing the framerate.</li>
-                    </ul>
+            <section class="cs-section">
+                <h2 class="cs-section-title">Interactive Prototype</h2>
+                <div class="ux-embed-wrapper" style="height: 600px; margin-top: 1rem; border-radius: 24px; overflow: hidden; border: 1px solid var(--color-border); box-shadow: var(--shadow-lg);">
+                    <iframe style="border: none;" width="100%" height="100%"
+                        src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2F2AcxlHpZkKJsjQPYGeDNIa%2FTopicQuiz-Mobile-App%3Fnode-id%3D1-4763%26t%3DJZKS1XRewdbjmX1M-1"
+                        allowfullscreen></iframe>
                 </div>
-
-                <div>
-                    <h2 class="res-h2"
-                        style="margin-bottom: 1rem; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
-                        Performance Improvements</h2>
-                    <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 1.05rem;">
-                        Improved frame rendering by <strong>60 FPS</strong> consistently across mid-tier devices.
-                        Utilizing an offline-first caching policy reduced redundant API calls by <strong>40%</strong>,
-                        saving both server load and student battery life.
-                    </p>
+                <div style="margin-top: 2rem; text-align: center;">
+                    <a href="https://www.figma.com/proto/2AcxlHpZkKJsjQPYGeDNIa/TopicQuiz-Mobile-App?node-id=1-4763&t=JZKS1XRewdbjmX1M-1" target="_blank" class="btn btn-primary">
+                        <i class="fab fa-figma" style="margin-right: 0.5rem;"></i> Open Full Prototype
+                    </a>
                 </div>
+            </section>
 
-            </div>
-
-            <div style="margin-top: 3rem; text-align: center;">
-                <a href="frontend-projects.html" class="btn btn-secondary">? Back to Frontend Engineering</a>
+            <div style="margin-top: 5rem; text-align: center;">
+                <a href="frontend-projects.html" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left" style="margin-right: 0.5rem;"></i> Back to Projects
+                </a>
             </div>
         </div>
-    </section>
+    </main>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <p>&copy; 2025 Yamini Sappa. All rights reserved.</p>
         </div>
     </footer>
 
+    <script>
+        // Set active nav link
+        document.getElementById('nav-projects').classList.add('nav-active');
+    </script>
 </body>
 
 </html>

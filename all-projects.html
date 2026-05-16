@@ -2,349 +2,163 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yamini Sappa | All Projects</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yamini Sappa | All Projects</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="style.css?v=12" />
+    <script src="script.js" defer></script>
 </head>
 
 <body>
-  <nav class="navbar" id="mainNav">
-    <div class="container">
-      <a href="index.html" class="nav-logo">Yamini Sappa</a>
-      <div class="nav-right">
-        <ul class="nav-menu">
-          <li><a href="frontend-projects.html" id="nav-projects">Projects</a></li>
-          <li><a href="design-projects.html"   id="nav-design">Design</a></li>
-          <li><a href="index.html#about"        id="nav-about">About</a></li>
-          <li><a href="index.html#contact"      id="nav-contact">Contact</a></li>
-        </ul>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-          <i class="fas fa-moon"></i>
-        </button>
-        <a href="./Yamini_Resume_Front%20End%20Developer.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a>
-      </div>
-    </div>
-  </nav>
+    <!-- Navbar -->
+    <nav class="navbar" id="mainNav">
+        <div class="container">
+            <a href="index.html" class="nav-logo">Yamini Sappa</a>
+            
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
 
-  <script>
-    // Theme setup (run immediately)
-    (function() {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {
-          document.documentElement.setAttribute('data-theme', 'dark');
-      }
-    })();
+            <div class="nav-right" id="navRight">
+                <ul class="nav-menu">
+                    <li><a href="frontend-projects.html" id="nav-projects">Projects</a></li>
+                    <li><a href="design-projects.html" id="nav-design">Design</a></li>
+                    <li><a href="index.html#about" id="nav-about">About</a></li>
+                    <li><a href="index.html#contact" id="nav-contact">Contact</a></li>
+                </ul>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="./Yamini_Resume_Front%20End%20Developer.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a>
+            </div>
+        </div>
+    </nav>
 
-    // Navbar scroll effect
-    (function () {
-      var nav = document.getElementById('mainNav');
-      if (!nav) return;
-      function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    })();
+    <!-- Hero Section -->
+    <header class="cs-hero">
+        <div class="hero-bg-visuals">
+            <div class="blob blob-1" style="background: rgba(91, 108, 255, 0.1);"></div>
+            <div class="blob blob-2" style="background: rgba(168, 85, 247, 0.1);"></div>
+        </div>
+        <div class="cs-container">
+            <h1 class="res-h1 fade-in">Work Showcase Hub</h1>
+            <p class="hero-sub fade-in">A comprehensive look into my specialized work across Frontend Engineering and UI/UX Design.</p>
+        </div>
+    </header>
 
-    // Active link highlight
-    (function () {
-      var path = window.location.pathname.split('/').pop() || 'index.html';
-      var map = {
-        'frontend-projects.html': 'nav-projects',
-        'design-projects.html': 'nav-design',
-        'index.html': 'nav-about'
-      };
-      // sub-pages that belong to engineering
-      var engineering = ['lms-group.html','news-app.html','lead-app.html','reels-interface.html',
-        'ecommerce-dashboard.html','placement-automation.html','inventory.html',
-        'streaming-dashboard.html'];
-      // sub-pages that belong to design
-      var design = ['design-system.html','topic-prep.html','topic-prep-admin.html',
-        'skill-medha.html','all-projects.html','design-projects.html',
-        'ecommerce.html','corporate-sites.html','graphic-design.html',
-        'hospital-sites.html','wedding.html'];
-      var targetId = map[path];
-      if (!targetId) {
-        if (engineering.includes(path)) targetId = 'nav-projects';
-        else if (design.includes(path))  targetId = 'nav-design';
-      }
-      if (targetId) {
-        var el = document.getElementById(targetId);
-        if (el) el.classList.add('nav-active');
-      }
-    })();
-
-    // Theme toggle bind
-    window.addEventListener('DOMContentLoaded', () => {
-        const themeToggle = document.getElementById('theme-toggle');
-        const icon = themeToggle ? themeToggle.querySelector('i') : null;
+    <main class="container" style="padding-bottom: 5rem;">
         
-        function updateIcon() {
-            if (!icon) return;
-            icon.className = document.documentElement.getAttribute('data-theme') === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-        }
-
-        if (themeToggle) {
-            updateIcon();
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                if (currentTheme === 'dark') {
-                    document.documentElement.removeAttribute('data-theme');
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    localStorage.setItem('theme', 'dark');
-                }
-                updateIcon();
-            });
-        }
-    });
-  </script>
-
-  <script>
-    // Navbar scroll effect
-    (function () {
-      var nav = document.getElementById('mainNav');
-      if (!nav) return;
-      function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    })();
-    // Active link highlight
-    (function () {
-      var path = window.location.pathname.split('/').pop() || 'index.html';
-      var map = {
-        'frontend-projects.html': 'nav-projects',
-        'design-projects.html': 'nav-design',
-        'index.html': 'nav-about'
-      };
-      // sub-pages that belong to engineering
-      var engineering = ['lms-group.html','news-app.html','lead-app.html','reels-interface.html',
-        'ecommerce-dashboard.html','placement-automation.html','inventory.html',
-        'streaming-dashboard.html'];
-      // sub-pages that belong to design
-      var design = ['design-system.html','topic-prep.html','topic-prep-admin.html',
-        'skill-medha.html','all-projects.html','design-projects.html',
-        'ecommerce.html','corporate-sites.html','graphic-design.html',
-        'hospital-sites.html','wedding.html'];
-      var targetId = map[path];
-      if (!targetId) {
-        if (engineering.includes(path)) targetId = 'nav-projects';
-        else if (design.includes(path))  targetId = 'nav-design';
-      }
-      if (targetId) {
-        var el = document.getElementById(targetId);
-        if (el) el.classList.add('nav-active');
-      }
-    })();
-  </script>
-
-  <header id="projects" class="hero projects-hero res-padding">
-    <div class="container">
-      <h1 class="hero-title fade-in res-h1">Work Showcase Hub</h1>
-      <p class="hero-subtitle fade-in">
-        A deep dive into my specialized work across Frontend Engineering and UI/UX Design.
-      </p>
-    </div>
-  </header>
-
-  <section class="work-section res-padding">
-    <div class="container">
-
-      <!-- FRONTEND ENGINEERING -->
-      <h2 class="section-title fade-in res-h2"
-        style="margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid var(--color-border);">Frontend
-        Engineering</h2>
-      <div class="frontend-grid"
-        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
-
-        <!-- Frontend Card 1 -->
-        <div class="fade-in"
-          style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
-          <div
-            style="background: #fafafa; height: 200px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--color-border);">
-            <img src="./icons/LMS.png" alt="LMS Screenshot" style="height: 80px; opacity: 0.9;" />
-          </div>
-          <div style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column;">
-            <h3 style="margin-top: 0; margin-bottom: 1rem; font-size: 1.4rem; color: var(--color-text);">LMS Platform</h3>
-
-            <div style="margin-bottom: 1rem;">
-              <h4
-                style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">
-                Tech Stack</h4>
-              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                <span class="tag">HTML5</span>
-                <span class="tag">CSS Variables</span>
-                <span class="tag">JavaScript</span>
-              </div>
+        <!-- Frontend Section -->
+        <div class="work-section" style="padding-top: 4rem;">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 3rem;">
+                <h2 class="res-h2" style="margin: 0; font-weight: 700;">Frontend Engineering</h2>
+                <div style="flex: 1; height: 1px; background: var(--color-border);"></div>
             </div>
+            
+            <div class="project-grid">
+                <!-- LMS Platform -->
+                <div class="fp-card fade-in">
+                    <div class="fp-thumb" style="background: linear-gradient(135deg, #fce8f0 0%, #f9d0e4 100%);">
+                        <div class="fp-thumb-placeholder">
+                            <img loading="lazy" src="./icons/LMS.png" alt="LMS" />
+                        </div>
+                    </div>
+                    <div class="fp-body">
+                        <span class="fp-tag">Multi-tenant · LMS</span>
+                        <h3 class="fp-title">LMS Platform</h3>
+                        <p class="fp-desc">Modular white-label architecture serving thousands of students.</p>
+                        <div class="fp-stack">
+                            <span class="fp-pill">HTML5</span>
+                            <span class="fp-pill">Vanilla JS</span>
+                        </div>
+                        <a href="lms-group.html" class="fp-link">View Case Study &rarr;</a>
+                    </div>
+                </div>
 
-            <div style="margin-bottom: 1.5rem; flex-grow: 1;">
-              <h4
-                style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">
-                Architecture Explanation</h4>
-              <p style="color: var(--color-text); font-size: 0.95rem; line-height: 1.6; margin: 0;">
-                Abstracted UI components using a White Label modular architecture. Leveraged scoped CSS variables to
-                instantly seamlessly reskin the platform across three different educational brands.
-              </p>
+                <!-- AssessPal -->
+                <div class="fp-card fade-in">
+                    <div class="fp-thumb" style="background: linear-gradient(135deg, #e8f4fd 0%, #cde8f9 100%);">
+                        <div class="fp-thumb-placeholder">
+                            <img loading="lazy" src="./icons/analysis.png" alt="AssessPal" />
+                        </div>
+                    </div>
+                    <div class="fp-body">
+                        <span class="fp-tag">Assessment Engine</span>
+                        <h3 class="fp-title">AssessPal Dashboard</h3>
+                        <p class="fp-desc">Automated scoring UI and real-time result analytics for instructors.</p>
+                        <div class="fp-stack">
+                            <span class="fp-pill">React</span>
+                            <span class="fp-pill">Analytics UI</span>
+                        </div>
+                        <a href="ecommerce-dashboard.html" class="fp-link">View Case Study &rarr;</a>
+                    </div>
+                </div>
             </div>
-
-            <div>
-              <a href="lms-group.html" class="btn btn-primary"
-                style="width: 100%; text-align: center; display: block;">Live Demo &rarr;</a>
-            </div>
-          </div>
         </div>
 
-        <!-- Frontend Card 2 -->
-        <div class="fade-in"
-          style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
-          <div
-            style="background: #fafafa; height: 200px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--color-border);">
-            <img src="./icons/analysis.png" alt="Dashboard Screenshot" style="height: 80px; opacity: 0.9;" />
-          </div>
-          <div style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column;">
-            <h3 style="margin-top: 0; margin-bottom: 1rem; font-size: 1.4rem; color: var(--color-text);">Sales Dashboard</h3>
-
-            <div style="margin-bottom: 1rem;">
-              <h4
-                style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">
-                Tech Stack</h4>
-              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                <span class="tag">Power BI</span>
-                <span class="tag">React</span>
-                <span class="tag">TypeScript</span>
-              </div>
+        <!-- UI/UX Section -->
+        <div class="work-section" style="padding-top: 6rem;">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 3rem;">
+                <h2 class="res-h2" style="margin: 0; font-weight: 700;">UI/UX Design</h2>
+                <div style="flex: 1; height: 1px; background: var(--color-border);"></div>
             </div>
 
-            <div style="margin-bottom: 1.5rem; flex-grow: 1;">
-              <h4
-                style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">
-                Architecture Explanation</h4>
-              <p style="color: var(--color-text); font-size: 0.95rem; line-height: 1.6; margin: 0;">
-                Built custom React visuals compiled into standard PowerBI objects. Managed state and data handling via
-                DAX, optimizing massive daily querying operations.
-              </p>
-            </div>
+            <div class="project-grid">
+                <!-- Lead Management -->
+                <div class="fp-card fade-in">
+                    <div class="fp-thumb" style="background: linear-gradient(135deg, #fff5e8 0%, #fde8c8 100%);">
+                        <div class="fp-thumb-placeholder">
+                            <img loading="lazy" src="./icons/lead-management.png" alt="Lead Management" />
+                        </div>
+                    </div>
+                    <div class="fp-body">
+                        <span class="fp-tag">Mobile CRM · UX</span>
+                        <h3 class="fp-title">Lead Management App</h3>
+                        <p class="fp-desc">Frictionless mobile CRM designed for rapid field data capture.</p>
+                        <div class="fp-stack">
+                            <span class="fp-pill">Figma</span>
+                            <span class="fp-pill">UX Flow</span>
+                        </div>
+                        <a href="lead-app.html" class="fp-link">View Details &rarr;</a>
+                    </div>
+                </div>
 
-            <div>
-              <a href="ecommerce-dashboard.html" class="btn btn-primary"
-                style="width: 100%; text-align: center; display: block;">Live Demo &rarr;</a>
+                <!-- SkillMedha -->
+                <div class="fp-card fade-in">
+                    <div class="fp-thumb" style="background: linear-gradient(135deg, #f3ecff 0%, #e4d5ff 100%);">
+                        <div class="fp-thumb-placeholder">
+                            <img loading="lazy" src="./icons/skill-medha.png" alt="SkillMedha" />
+                        </div>
+                    </div>
+                    <div class="fp-body">
+                        <span class="fp-tag">Design System</span>
+                        <h3 class="fp-title">SkillMedha System</h3>
+                        <p class="fp-desc">Unified atomic design system resolving multi-portal inconsistencies.</p>
+                        <div class="fp-stack">
+                            <span class="fp-pill">Atomic Design</span>
+                            <span class="fp-pill">Figma</span>
+                        </div>
+                        <a href="skill-medha.html" class="fp-link">View System &rarr;</a>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- UI/UX DESIGN -->
-      <h2 class="section-title fade-in res-h2"
-        style="margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid var(--color-border);">UI/UX Design
-        Case Studies</h2>
-      <div class="uiux-grid" style="display: flex; flex-direction: column; gap: 3rem;">
-
-        <!-- Case Study 1 -->
-        <div class="fade-in"
-          style="background: white; border-radius: 12px; padding: 2.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
-          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
-            <img src="./icons/topic-prep.png" alt="TopicPrep Icon" style="width: 50px;" />
-            <h3 style="font-size: 1.6rem; margin: 0; color: var(--color-text);">TopicPrep Mobile App</h3>
-          </div>
-
-          <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
-            <div>
-              <h4 style="font-size: 1.1rem; color: var(--color-text); margin-bottom: 0.5rem;">1. Problem</h4>
-              <p style="color: var(--color-text-secondary); font-size: 1rem; line-height: 1.6;">Students face heavy 'study fatigue'. We
-                needed to turn test prep into an engaging habit by introducing gamification.</p>
-            </div>
-            <div>
-              <h4 style="font-size: 1.1rem; color: var(--color-text); margin-bottom: 0.5rem;">2. Research</h4>
-              <p style="color: var(--color-text-secondary); font-size: 1rem; line-height: 1.6;">15+ user interviews highlighted the
-                'overwhelm' of list-based curriculums. Tested "Journey Map" concepts highlighting micro-progression vs
-                traditional lists.</p>
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-              <div
-                style="background: #fafafa; border: 1px dashed #ccc; padding: 1.5rem; border-radius: 8px; text-align: center;">
-                <h4 style="font-size: 1rem; color: var(--color-text); margin-top: 0; margin-bottom: 0.5rem;">3. Wireframes</h4>
-                <p style="font-size: 0.9rem; color: #999;">Lo-Fi Maps & Layouts</p>
-              </div>
-              <div
-                style="background: #fafafa; border: 1px solid var(--color-border); padding: 1.5rem; border-radius: 8px; text-align: center;">
-                <h4 style="font-size: 1rem; color: var(--color-text); margin-top: 0; margin-bottom: 0.5rem;">4. Final UI</h4>
-                <p style="font-size: 0.9rem; color: #999;">Hi-Fi Gamified Nodes</p>
-              </div>
-            </div>
-
-            <div style="margin-top: 1rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem;">
-              <h4 style="font-size: 1.1rem; color: var(--color-text); margin-bottom: 1rem;">5. Prototype</h4>
-              <a href="topic-prep.html" class="btn btn-secondary">View Interactive Figma Prototype & Case Details</a>
-            </div>
-          </div>
         </div>
 
-        <!-- Case Study 2 -->
-        <div class="fade-in"
-          style="background: white; border-radius: 12px; padding: 2.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
-          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
-            <img src="./icons/skill-medha.png" alt="SkillMedha Icon" style="width: 50px;" />
-            <h3 style="font-size: 1.6rem; margin: 0; color: var(--color-text);">SkillMedha CMS Platform</h3>
-          </div>
+    </main>
 
-          <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
-            <div>
-              <h4 style="font-size: 1.1rem; color: var(--color-text); margin-bottom: 0.5rem;">1. Problem</h4>
-              <p style="color: var(--color-text-secondary); font-size: 1rem; line-height: 1.6;">Lack of a unified design system meant
-                massive inconsistencies across a 3-portal product serving highly different user bases (Students vs
-                Corporates).</p>
-            </div>
-            <div>
-              <h4 style="font-size: 1.1rem; color: var(--color-text); margin-bottom: 0.5rem;">2. Research</h4>
-              <p style="color: var(--color-text-secondary); font-size: 1rem; line-height: 1.6;">Audited existing dashboards, grouped
-                repeating components, and mapped multi-tiered Role-Based Access controls to isolate global elements.</p>
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-              <div
-                style="background: #fafafa; border: 1px dashed #ccc; padding: 1.5rem; border-radius: 8px; text-align: center;">
-                <h4 style="font-size: 1rem; color: var(--color-text); margin-top: 0; margin-bottom: 0.5rem;">3. Wireframes</h4>
-                <p style="font-size: 0.9rem; color: #999;">Component Placeholders</p>
-              </div>
-              <div
-                style="background: #fafafa; border: 1px solid var(--color-border); padding: 1.5rem; border-radius: 8px; text-align: center;">
-                <h4 style="font-size: 1rem; color: var(--color-text); margin-top: 0; margin-bottom: 0.5rem;">4. Final UI</h4>
-                <p style="font-size: 0.9rem; color: #999;">Strict CMS Layout</p>
-              </div>
-            </div>
-
-            <div style="margin-top: 1rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem;">
-              <h4 style="font-size: 1.1rem; color: var(--color-text); margin-bottom: 1rem;">5. Prototype</h4>
-              <a href="skill-medha.html" class="btn btn-secondary">View Component System Prototype & Case Details</a>
-            </div>
-          </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Yamini Sappa. All rights reserved.</p>
         </div>
+    </footer>
 
-      </div>
-    </div>
-  </section>
-
-
-
-
-
-  <footer class="footer">
-    <div class="container">
-      <p>&copy; 2025 Yamini Sappa. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
 </body>
 
 </html>

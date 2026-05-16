@@ -11,258 +11,129 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?v=12" />
     <script src="script.js" defer></script>
 </head>
 
 <body>
+    <!-- Navbar -->
     <nav class="navbar" id="mainNav">
-    <div class="container">
-      <a href="index.html" class="nav-logo">Yamini Sappa</a>
-      <div class="nav-right">
-        <ul class="nav-menu">
-          <li><a href="frontend-projects.html" id="nav-projects">Projects</a></li>
-          <li><a href="design-projects.html"   id="nav-design">Design</a></li>
-          <li><a href="index.html#about"        id="nav-about">About</a></li>
-          <li><a href="index.html#contact"      id="nav-contact">Contact</a></li>
-        </ul>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-          <i class="fas fa-moon"></i>
-        </button>
-        <a href="./Yamini_Resume_Front%20End%20Developer.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a>
-      </div>
-    </div>
-  </nav>
+        <div class="container">
+            <a href="index.html" class="nav-logo">Yamini Sappa</a>
+            
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
 
-  <script>
-    // Theme setup (run immediately)
-    (function() {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {
-          document.documentElement.setAttribute('data-theme', 'dark');
-      }
-    })();
+            <div class="nav-right" id="navRight">
+                <ul class="nav-menu">
+                    <li><a href="frontend-projects.html" id="nav-projects">Projects</a></li>
+                    <li><a href="design-projects.html" id="nav-design">Design</a></li>
+                    <li><a href="index.html#about" id="nav-about">About</a></li>
+                    <li><a href="index.html#contact" id="nav-contact">Contact</a></li>
+                </ul>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="./Yamini_Resume_Front%20End%20Developer.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a>
+            </div>
+        </div>
+    </nav>
 
-    // Navbar scroll effect
-    (function () {
-      var nav = document.getElementById('mainNav');
-      if (!nav) return;
-      function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    })();
-
-    // Active link highlight
-    (function () {
-      var path = window.location.pathname.split('/').pop() || 'index.html';
-      var map = {
-        'frontend-projects.html': 'nav-projects',
-        'design-projects.html': 'nav-design',
-        'index.html': 'nav-about'
-      };
-      // sub-pages that belong to engineering
-      var engineering = ['lms-group.html','news-app.html','lead-app.html','reels-interface.html',
-        'ecommerce-dashboard.html','placement-automation.html','inventory.html',
-        'streaming-dashboard.html'];
-      // sub-pages that belong to design
-      var design = ['design-system.html','topic-prep.html','topic-prep-admin.html',
-        'skill-medha.html','all-projects.html','design-projects.html',
-        'ecommerce.html','corporate-sites.html','graphic-design.html',
-        'hospital-sites.html','wedding.html'];
-      var targetId = map[path];
-      if (!targetId) {
-        if (engineering.includes(path)) targetId = 'nav-projects';
-        else if (design.includes(path))  targetId = 'nav-design';
-      }
-      if (targetId) {
-        var el = document.getElementById(targetId);
-        if (el) el.classList.add('nav-active');
-      }
-    })();
-
-    // Theme toggle bind
-    window.addEventListener('DOMContentLoaded', () => {
-        const themeToggle = document.getElementById('theme-toggle');
-        const icon = themeToggle ? themeToggle.querySelector('i') : null;
-        
-        function updateIcon() {
-            if (!icon) return;
-            icon.className = document.documentElement.getAttribute('data-theme') === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-        }
-
-        if (themeToggle) {
-            updateIcon();
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                if (currentTheme === 'dark') {
-                    document.documentElement.removeAttribute('data-theme');
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    localStorage.setItem('theme', 'dark');
-                }
-                updateIcon();
-            });
-        }
-    });
-  </script>
-
-  <script>
-    // Navbar scroll effect
-    (function () {
-      var nav = document.getElementById('mainNav');
-      if (!nav) return;
-      function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    })();
-    // Active link highlight
-    (function () {
-      var path = window.location.pathname.split('/').pop() || 'index.html';
-      var map = {
-        'frontend-projects.html': 'nav-projects',
-        'design-projects.html': 'nav-design',
-        'index.html': 'nav-about'
-      };
-      // sub-pages that belong to engineering
-      var engineering = ['lms-group.html','news-app.html','lead-app.html','reels-interface.html',
-        'ecommerce-dashboard.html','placement-automation.html','inventory.html',
-        'streaming-dashboard.html'];
-      // sub-pages that belong to design
-      var design = ['design-system.html','topic-prep.html','topic-prep-admin.html',
-        'skill-medha.html','all-projects.html','design-projects.html',
-        'ecommerce.html','corporate-sites.html','graphic-design.html',
-        'hospital-sites.html','wedding.html'];
-      var targetId = map[path];
-      if (!targetId) {
-        if (engineering.includes(path)) targetId = 'nav-projects';
-        else if (design.includes(path))  targetId = 'nav-design';
-      }
-      if (targetId) {
-        var el = document.getElementById(targetId);
-        if (el) el.classList.add('nav-active');
-      }
-    })();
-  </script>
-
-    <header class="hero res-padding"
-        style="min-height: 50vh; align-items: center; justify-content: center; display: flex; text-align: center;">
-        <div class="container" style="display: flex; flex-direction: column; align-items: center;">
-            <img src="./icons/skill-medha.png" alt="SkillMedha Hero"
-                style="width: 100px; height: 100px; margin-bottom: 1.5rem; object-fit: contain;" />
-            <h1 class="hero-title fade-in res-h1" style="margin-bottom: 0.5rem;">SkillMedha CMS Platform</h1>
-            <p class="hero-subtitle fade-in" style="max-width: 700px; margin: 0.5rem auto 0;">
-                A complex, multi-portal system for students, colleges, and corporate partners.
-            </p>
+    <!-- Case Study Hero -->
+    <header class="cs-hero" style="min-height: 420px; padding-bottom: 140px;">
+        <div class="hero-bg-visuals">
+            <div class="blob blob-2" style="background: rgba(168, 85, 247, 0.15);"></div>
+            <div class="blob blob-3" style="background: rgba(249, 115, 22, 0.15);"></div>
+        </div>
+        <div class="cs-container">
+            <h1 class="res-h1 fade-in" style="margin-bottom: 1rem;">Skill Medha: Placement Automation</h1>
+            <p class="hero-sub fade-in" style="max-width: 800px; margin: 0 auto;">A dual-facing EdTech platform architected to automate placement workflows and skill-building for students and recruitment partners.</p>
         </div>
     </header>
 
-    <section class="work-section">
-        <div class="container">
-            <div class="project-details fade-in res-padding"
-                style="background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+    <!-- Case Study Content -->
+    <main class="cs-container">
+        <div class="cs-content-card fade-in" style="margin-top: -60px;">
 
-                <div style="margin-bottom: 3rem;">
-                    <h2 class="res-h2"
-                        style="margin-bottom: 1rem; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
-                        Problem</h2>
-                    <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 1.05rem;">
-                        This massive project required three distinct user portals (Students, Colleges, Corporates). The
-                        main problem was a massive inconsistency and slow development cycle caused by lacking a unified
-                        Design System that could support complex dashboards for admins while remaining simple enough for
-                        students.
-                    </p>
-                </div>
-
-                <div style="margin-bottom: 3rem;">
-                    <h2 class="res-h2"
-                        style="margin-bottom: 1rem; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
-                        Research</h2>
-                    <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 1.05rem;">
-                        I audited over 150 existing screens across the platform. I identified 12 unique, inconsistent
-                        button variations, 8 competing table styles, and a complete lack of typographic hierarchy. The
-                        frontend team was spending 40% of their sprints just rewriting CSS overrides to match ad-hoc
-                        design files.
-                    </p>
-                </div>
-
-                <div style="margin-bottom: 3rem;">
-                    <h2 class="res-h2"
-                        style="margin-bottom: 1rem; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
-                        User Flow</h2>
-                    <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 1.05rem;">
-                        The flow starts with Role Based Access Control (RBAC): User Logs in &rarr; System detects Role
-                        (Student/College/Corporate) &rarr; Routes to specific portal view &rarr; Renders specific
-                        dashboard using the newly unified component architecture bound to that role's permissions.
-                    </p>
-                </div>
-
-                <div style="margin-bottom: 3rem;">
-                    <h2 class="res-h2"
-                        style="margin-bottom: 1rem; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
-                        Wireframes</h2>
-                    <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 1.05rem;">
-                        The wireframing phase ignored high-fidelity looks and instead focused entirely on structural
-                        component hierarchy. I mapped out the atomic building blocks (inputs, buttons) before assembling
-                        them into complex organisms (data tables, modal forms).
-                    </p>
-                    <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
-                        <div
-                            style="flex:1; min-width: 250px; background: #fafafa; padding: 2rem; border: 2px dashed #ccc; text-align: center; color: #aaa; border-radius: 8px;">
-                            Atomic Components Map</div>
-                        <div
-                            style="flex:1; min-width: 250px; background: #fafafa; padding: 2rem; border: 2px dashed #ccc; text-align: center; color: #aaa; border-radius: 8px;">
-                            Organism Assembly</div>
+            <section class="cs-section">
+                <h2 class="cs-section-title">The Role & Vision</h2>
+                <p class="cs-text">
+                    I designed the platform's entire interface and served as a core developer to build the placement automation and skill-building system. My role involved directing the complete visual design strategy in Figma, from wireframes to high-fidelity prototypes for both students and recruitment partners.
+                </p>
+                <div class="tech-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem;">
+                    <div style="background: var(--color-bg); padding: 2rem; border-radius: 20px; border: 1px solid var(--color-border);">
+                        <i class="fas fa-file-invoice" style="color: #ec4899; font-size: 1.5rem; margin-bottom: 1.2rem; display: block;"></i>
+                        <h4 style="margin: 0 0 0.75rem 0; font-size: 1.1rem;">Dynamic Resume Builder</h4>
+                        <p style="font-size: 0.95rem; margin: 0; color: var(--color-text-secondary); line-height: 1.6;">Automated tool for students to create professional, system-compatible resumes.</p>
+                    </div>
+                    <div style="background: var(--color-bg); padding: 2rem; border-radius: 20px; border: 1px solid var(--color-border);">
+                        <i class="fas fa-users-cog" style="color: #3b82f6; font-size: 1.5rem; margin-bottom: 1.2rem; display: block;"></i>
+                        <h4 style="margin: 0 0 0.75rem 0; font-size: 1.1rem;">Recruiter Portal</h4>
+                        <p style="font-size: 0.95rem; margin: 0; color: var(--color-text-secondary); line-height: 1.6;">Centralized dashboard for partners to manage candidate pipelines efficiently.</p>
                     </div>
                 </div>
+            </section>
 
-                <div style="margin-bottom: 3rem;">
-                    <h2 class="res-h2"
-                        style="margin-bottom: 1rem; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
-                        Final UI</h2>
-                    <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 1.05rem;">
-                        The final deliverables were not just screens, but a highly organized Figma Library utilizing
-                        full Auto-Layout, Component Variants, and deeply nested Figma Typography/Spacing Variables that
-                        bridged the gap elegantly between UX and Code.
-                    </p>
-                    <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
-                        <div
-                            style="flex:1; min-width: 250px; background: #fafafa; padding: 2rem; border: 1px solid var(--color-border); text-align: center; color: #aaa; border-radius: 8px;">
-                            Component Library UI</div>
-                        <div
-                            style="flex:1; min-width: 250px; background: #fafafa; padding: 2rem; border: 1px solid var(--color-border); text-align: center; color: #aaa; border-radius: 8px;">
-                            Application Dashboard UI</div>
+            <section class="cs-section">
+                <h2 class="cs-section-title">Core Features</h2>
+                <div class="cs-image-grid" style="margin-bottom: 2.5rem;">
+                    <div class="cs-gallery-item">
+                        <img src="./images/skillmedha1.jpg" alt="Student Dashboard" class="cs-gallery-img">
+                        <h4 class="cs-gallery-title">Student Dashboard</h4>
+                        <p class="cs-gallery-desc">Comprehensive student overview featuring skill analytics, drive status, and personalized learning paths.</p>
+                    </div>
+                    <div class="cs-gallery-item">
+                        <img src="./images/skillmedha2.jpg" alt="Recruiter Portal" class="cs-gallery-img">
+                        <h4 class="cs-gallery-title">Recruiter Portal</h4>
+                        <p class="cs-gallery-desc">Centralized hub for recruitment partners to manage candidate pipelines and evaluation workflows.</p>
+                    </div>
+                    <div class="cs-gallery-item">
+                        <img src="./images/skillmedha3.jpg" alt="Drive Management" class="cs-gallery-img">
+                        <h4 class="cs-gallery-title">Drive Management</h4>
+                        <p class="cs-gallery-desc">End-to-end automated system for tracking placement drives from announcement to final hiring.</p>
+                    </div>
+                    <div class="cs-gallery-item">
+                        <img src="./images/skillmedha4.jpg" alt="Student Learning Platform" class="cs-gallery-img">
+                        <h4 class="cs-gallery-title">Student Learning Platform</h4>
+                        <p class="cs-gallery-desc">Integrated learning environment featuring an AI-powered chatbot to assist students with real-time doubt resolution and navigation.</p>
                     </div>
                 </div>
+            </section>
 
-                <div>
-                    <h2 class="res-h2"
-                        style="margin-bottom: 1rem; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
-                        Prototype</h2>
-                    <div class="res-img-height"
-                        style="width: 100%; border-radius: 8px; overflow: hidden; border: 1px solid var(--color-border); background: #fafafa;">
-                        <!-- Embed from user provided link -->
-                        <iframe style="border: none;" width="100%" height="100%"
-                            src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FFI13ePHQnmnlhDa45J9eTf%2FCOnnectIndia-News-Chat%3Ft%3DhDcPRRHtsHMCg51Y-1"
-                            allowfullscreen></iframe>
-                    </div>
+            <section class="cs-section">
+                <h2 class="cs-section-title">Interactive Prototype</h2>
+                <div class="ux-embed-wrapper" style="height: 600px; margin-top: 1rem; border-radius: 24px; overflow: hidden; border: 1px solid var(--color-border); box-shadow: var(--shadow-lg);">
+                    <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="100%" 
+                        src="https://embed.figma.com/design/wvFsYMtpN8sBMm82S8o3En/College-Management-System?node-id=0-1&embed-host=share" 
+                        allowfullscreen></iframe>
                 </div>
+                <div style="margin-top: 2rem; text-align: center;">
+                    <a href="https://www.figma.com/proto/wvFsYMtpN8sBMm82S8o3En/College-Management-System?node-id=0-1&t=JZKS1XRewdbjmX1M-1" target="_blank" class="btn btn-primary">
+                        <i class="fab fa-figma" style="margin-right: 0.5rem;"></i> Open Full Prototype
+                    </a>
+                </div>
+            </section>
 
-            </div>
-
-            <div style="margin-top: 3rem; text-align: center;">
-                <a href="design-projects.html" class="btn btn-secondary">? Back to Design Work</a>
+            <div style="margin-top: 5rem; text-align: center;">
+                <a href="design-projects.html" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left" style="margin-right: 0.5rem;"></i> Back to Design Work
+                </a>
             </div>
         </div>
-    </section>
+    </main>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <p>&copy; 2025 Yamini Sappa. All rights reserved.</p>
         </div>
     </footer>
 
+    <script>
+        // Set active nav link
+        document.getElementById('nav-design').classList.add('nav-active');
+    </script>
 </body>
 
 </html>

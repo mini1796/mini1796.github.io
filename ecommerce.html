@@ -4,210 +4,103 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>E-Commerce Website | Yamini Sappa</title>
+    <title>E-Commerce Store | Yamini Sappa</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?v=12" />
     <script src="script.js" defer></script>
 </head>
 
 <body>
+    <!-- Navbar -->
     <nav class="navbar" id="mainNav">
-    <div class="container">
-      <a href="index.html" class="nav-logo">Yamini Sappa</a>
-      <div class="nav-right">
-        <ul class="nav-menu">
-          <li><a href="frontend-projects.html" id="nav-projects">Projects</a></li>
-          <li><a href="design-projects.html"   id="nav-design">Design</a></li>
-          <li><a href="index.html#about"        id="nav-about">About</a></li>
-          <li><a href="index.html#contact"      id="nav-contact">Contact</a></li>
-        </ul>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-          <i class="fas fa-moon"></i>
-        </button>
-        <a href="./Yamini_Resume_Front%20End%20Developer.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a>
-      </div>
-    </div>
-  </nav>
+        <div class="container">
+            <a href="index.html" class="nav-logo">Yamini Sappa</a>
+            
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
 
-  <script>
-    // Theme setup (run immediately)
-    (function() {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {
-          document.documentElement.setAttribute('data-theme', 'dark');
-      }
-    })();
+            <div class="nav-right" id="navRight">
+                <ul class="nav-menu">
+                    <li><a href="frontend-projects.html" id="nav-projects">Projects</a></li>
+                    <li><a href="design-projects.html" id="nav-design">Design</a></li>
+                    <li><a href="index.html#about" id="nav-about">About</a></li>
+                    <li><a href="index.html#contact" id="nav-contact">Contact</a></li>
+                </ul>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="./Yamini_Resume_Front%20End%20Developer.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a>
+            </div>
+        </div>
+    </nav>
 
-    // Navbar scroll effect
-    (function () {
-      var nav = document.getElementById('mainNav');
-      if (!nav) return;
-      function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    })();
-
-    // Active link highlight
-    (function () {
-      var path = window.location.pathname.split('/').pop() || 'index.html';
-      var map = {
-        'frontend-projects.html': 'nav-projects',
-        'design-projects.html': 'nav-design',
-        'index.html': 'nav-about'
-      };
-      // sub-pages that belong to engineering
-      var engineering = ['lms-group.html','news-app.html','lead-app.html','reels-interface.html',
-        'ecommerce-dashboard.html','placement-automation.html','inventory.html',
-        'streaming-dashboard.html'];
-      // sub-pages that belong to design
-      var design = ['design-system.html','topic-prep.html','topic-prep-admin.html',
-        'skill-medha.html','all-projects.html','design-projects.html',
-        'ecommerce.html','corporate-sites.html','graphic-design.html',
-        'hospital-sites.html','wedding.html'];
-      var targetId = map[path];
-      if (!targetId) {
-        if (engineering.includes(path)) targetId = 'nav-projects';
-        else if (design.includes(path))  targetId = 'nav-design';
-      }
-      if (targetId) {
-        var el = document.getElementById(targetId);
-        if (el) el.classList.add('nav-active');
-      }
-    })();
-
-    // Theme toggle bind
-    window.addEventListener('DOMContentLoaded', () => {
-        const themeToggle = document.getElementById('theme-toggle');
-        const icon = themeToggle ? themeToggle.querySelector('i') : null;
-        
-        function updateIcon() {
-            if (!icon) return;
-            icon.className = document.documentElement.getAttribute('data-theme') === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-        }
-
-        if (themeToggle) {
-            updateIcon();
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                if (currentTheme === 'dark') {
-                    document.documentElement.removeAttribute('data-theme');
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    localStorage.setItem('theme', 'dark');
-                }
-                updateIcon();
-            });
-        }
-    });
-  </script>
-
-  <script>
-    // Navbar scroll effect
-    (function () {
-      var nav = document.getElementById('mainNav');
-      if (!nav) return;
-      function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    })();
-    // Active link highlight
-    (function () {
-      var path = window.location.pathname.split('/').pop() || 'index.html';
-      var map = {
-        'frontend-projects.html': 'nav-projects',
-        'design-projects.html': 'nav-design',
-        'index.html': 'nav-about'
-      };
-      // sub-pages that belong to engineering
-      var engineering = ['lms-group.html','news-app.html','lead-app.html','reels-interface.html',
-        'ecommerce-dashboard.html','placement-automation.html','inventory.html',
-        'streaming-dashboard.html'];
-      // sub-pages that belong to design
-      var design = ['design-system.html','topic-prep.html','topic-prep-admin.html',
-        'skill-medha.html','all-projects.html','design-projects.html',
-        'ecommerce.html','corporate-sites.html','graphic-design.html',
-        'hospital-sites.html','wedding.html'];
-      var targetId = map[path];
-      if (!targetId) {
-        if (engineering.includes(path)) targetId = 'nav-projects';
-        else if (design.includes(path))  targetId = 'nav-design';
-      }
-      if (targetId) {
-        var el = document.getElementById(targetId);
-        if (el) el.classList.add('nav-active');
-      }
-    })();
-  </script>
-
-    <header class="hero res-padding"
-        style="min-height: 50vh; align-items: center; justify-content: center; display: flex; text-align: center;">
-        <div class="container" style="display: flex; flex-direction: column; align-items: center;">
-            <img src="./icons/ecomm.png" alt="E-Commerce Hero"
-                style="width: 100px; height: 100px; margin-bottom: 1.5rem; object-fit: contain;" />
-            <h1 class="hero-title fade-in res-h1" style="margin-bottom: 0.5rem;">E-Commerce Website</h1>
-            <p class="hero-subtitle fade-in" style="max-width: 700px; margin: 0.5rem auto 0;">
-                An end-to-end conversion-focused online store for a dry fruits brand.
-            </p>
+    <!-- Case Study Hero -->
+    <header class="cs-hero">
+        <div class="hero-bg-visuals">
+            <div class="blob blob-1" style="background: rgba(249, 115, 22, 0.1);"></div>
+            <div class="blob blob-2" style="background: rgba(91, 108, 255, 0.1);"></div>
+        </div>
+        <div class="cs-container">
+            <img loading="lazy" src="./icons/ecomm.png" alt="Ecomm Icon" style="height: 80px; margin-bottom: 2rem;" />
+            <h1 class="res-h1 fade-in">E-Commerce Brand Store</h1>
+            <p class="hero-sub fade-in">An end-to-end, conversion-focused online shopping experience designed for a premium dry fruits brand.</p>
         </div>
     </header>
 
-    <section class="work-section">
-        <div class="container">
-            <div class="project-details fade-in res-padding"
-                style="background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+    <!-- Case Study Content -->
+    <main class="cs-container">
+        <div class="cs-content-card fade-in">
+            
+            <section class="cs-section">
+                <h2 class="cs-section-title">The Goal</h2>
+                <p class="cs-text">
+                    The client required a fully functional, high-performance online store that simplified the purchasing journey. The focus was on creating a secure, visually rich platform that minimized friction and maximized conversion rates.
+                </p>
+            </section>
 
-                <div style="margin-bottom: 3rem;">
-                    <h2 class="res-h2"
-                        style="margin-bottom: 1rem; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
-                        The Goal</h2>
-                    <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 1.05rem;">
-                        The client needed a fully functional online store that made browsing and purchasing simple,
-                        secure, and visually appealing to increase sales conversions.
-                    </p>
+            <section class="cs-section">
+                <h2 class="cs-section-title">End-to-End Implementation</h2>
+                <p class="cs-text">
+                    I managed the full lifecycle of this project. Starting from high-fidelity UI designs in Figma focused on product visibility, I developed the frontend using semantic HTML, CSS, and modern JavaScript. To finalize the store, I integrated the <strong>Razorpay payment gateway</strong> for secure, real-time transactions.
+                </p>
+                <div class="cs-image-grid">
+                    <div class="cs-image-placeholder">Product Catalog Interface</div>
+                    <div class="cs-image-placeholder">Secure Checkout Flow</div>
                 </div>
+            </section>
 
-                <div style="margin-bottom: 3rem;">
-                    <h2 class="res-h2"
-                        style="margin-bottom: 1rem; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
-                        My Role & Process</h2>
-                    <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 1.05rem;">
-                        I handled this project end-to-end. I designed the UI in Figma to focus on product visibility and
-                        then built the frontend using HTML, CSS, and JavaScript. I also integrated the Razorpay payment
-                        gateway for secure transactions.
-                    </p>
-                </div>
+            <section class="cs-section">
+                <h2 class="cs-section-title">Outcome</h2>
+                <p class="cs-text">
+                    The final product is a fast, responsive, and intuitive shopping experience that handles everything from complex cart management to secure, encrypted checkouts seamlessly.
+                </p>
+            </section>
 
-                <div>
-                    <h2 class="res-h2"
-                        style="margin-bottom: 1rem; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
-                        The Outcome</h2>
-                    <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 1.05rem;">
-                        A fast, responsive, and user-friendly shopping experience that seamlessly handles everything
-                        from product browsing and cart management to secure checkout.
-                    </p>
-                </div>
-
-            </div>
-
-            <div style="margin-top: 3rem; text-align: center;">
-                <a href="all-projects.html" class="btn btn-secondary">? Back to All Projects</a>
+            <div style="margin-top: 4rem; text-align: center;">
+                <a href="all-projects.html" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left" style="margin-right: 0.5rem;"></i> Back to All Projects
+                </a>
             </div>
         </div>
-    </section>
+    </main>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <p>&copy; 2025 Yamini Sappa. All rights reserved.</p>
         </div>
     </footer>
 
+    <script>
+        // Set active nav link
+        document.getElementById('nav-projects').classList.add('nav-active');
+    </script>
 </body>
 
 </html>

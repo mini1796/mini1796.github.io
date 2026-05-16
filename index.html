@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./style.css?v=12" />
 
 
 </head>
@@ -25,7 +25,10 @@
   <nav class="navbar" id="mainNav">
     <div class="container">
       <a href="index.html" class="nav-logo">Yamini Sappa</a>
-      <div class="nav-right">
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="nav-right" id="navRight">
         <ul class="nav-menu">
           <li><a href="frontend-projects.html" id="nav-projects">Projects</a></li>
           <li><a href="design-projects.html" id="nav-design">Design</a></li>
@@ -42,785 +45,382 @@
   </nav>
 
   <script>
-    // Theme setup (run immediately)
+    // Theme setup (run immediately to prevent flash)
     (function () {
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme === 'dark') {
         document.documentElement.setAttribute('data-theme', 'dark');
       }
     })();
-
-    // Navbar scroll effect
-    (function () {
-      var nav = document.getElementById('mainNav');
-      if (!nav) return;
-      function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    })();
-
-    // Active link highlight
-    (function () {
-      var path = window.location.pathname.split('/').pop() || 'index.html';
-      var map = {
-        'frontend-projects.html': 'nav-projects',
-        'design-projects.html': 'nav-design',
-        'index.html': 'nav-about'
-      };
-      // sub-pages that belong to engineering
-      var engineering = ['lms-group.html', 'news-app.html', 'lead-app.html', 'reels-interface.html',
-        'ecommerce-dashboard.html', 'placement-automation.html', 'inventory.html',
-        'streaming-dashboard.html'];
-      // sub-pages that belong to design
-      var design = ['design-system.html', 'topic-prep.html', 'topic-prep-admin.html',
-        'skill-medha.html', 'all-projects.html', 'design-projects.html',
-        'ecommerce.html', 'corporate-sites.html', 'graphic-design.html',
-        'hospital-sites.html', 'wedding.html'];
-      var targetId = map[path];
-      if (!targetId) {
-        if (engineering.includes(path)) targetId = 'nav-projects';
-        else if (design.includes(path)) targetId = 'nav-design';
-      }
-      if (targetId) {
-        var el = document.getElementById(targetId);
-        if (el) el.classList.add('nav-active');
-      }
-    })();
-
-    // Theme toggle bind
-    window.addEventListener('DOMContentLoaded', () => {
-      const themeToggle = document.getElementById('theme-toggle');
-      const icon = themeToggle ? themeToggle.querySelector('i') : null;
-
-      function updateIcon() {
-        if (!icon) return;
-        icon.className = document.documentElement.getAttribute('data-theme') === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-      }
-
-      if (themeToggle) {
-        updateIcon();
-        themeToggle.addEventListener('click', () => {
-          const currentTheme = document.documentElement.getAttribute('data-theme');
-          if (currentTheme === 'dark') {
-            document.documentElement.removeAttribute('data-theme');
-            localStorage.setItem('theme', 'light');
-          } else {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-          }
-          updateIcon();
-        });
-      }
-    });
   </script>
 
 
 
-  <!-- ------------------------------------------- 1. HERO --- -->
+  <!-- ------------------------------------------- 1. HERO (BANNER) --- -->
 
 
   <header id="home" class="hero-section">
-
-    <!-- -- LEFT: 7 columns -- -->
-    <div class="hero-left container" style="max-width: none; padding-left: clamp(1.5rem, 5vw, 5rem);">
-      <div class="hero-eyebrow fade-in">
-        <span class="hero-eyebrow-dot"></span>
-        Available for new opportunities
-      </div>
-      <h1 class="hero-h1 fade-in res-h1">
-        Frontend Software<br>
-        Engineer &amp;<br>
-        <em>Product Designer</em>
-      </h1>
-      <p class="hero-sub fade-in">
-        I design and build scalable digital products using React,<br>
-        JavaScript and modern UI systems.
-      </p>
-      <div class="hero-ctas fade-in">
-        <a href="frontend-projects.html" class="hero-cta-primary">
-          <i class="fas fa-code" style="font-size:0.9em;"></i>
-          View Projects
-        </a>
-        <a href="design-projects.html" class="hero-cta-secondary">
-          <i class="fas fa-pen-nib" style="font-size:0.9em;"></i>
-          View Design Work
-        </a>
-      </div>
+    <!-- Animated Gradient Background -->
+    <div class="hero-bg-visuals">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
     </div>
 
-    <!-- -- RIGHT: 5 columns – animated UI components -- -->
-    <div class="hero-right">
-      <!-- subtle dot grid -->
-      <svg class="hero-dots" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-        <defs>
-          <pattern id="dots" x="0" y="0" width="22" height="22" patternUnits="userSpaceOnUse">
-            <circle cx="2" cy="2" r="1.5" fill="var(--color-primary)" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#dots)" />
-      </svg>
-
-      <div class="ui-stage">
-
-        <!-- Card 1: App window / browser mock -->
-        <div class="ui-card ui-card-browser">
-          <div class="browser-bar">
-            <span class="browser-dot" style="background:#ff6b6b;"></span>
-            <span class="browser-dot" style="background:#feca57;"></span>
-            <span class="browser-dot" style="background:#1dd1a1;"></span>
-            <div class="browser-url"></div>
-          </div>
-          <div class="browser-content">
-            <div class="browser-row accent"></div>
-            <div class="browser-row med" style="margin-top:0.2rem;"></div>
-            <div class="browser-row short"></div>
-            <div class="browser-thumb">
-              <div style="display:flex;gap:0.5rem;">
-                <div
-                  style="width:36px;height:36px;border-radius:8px;background:rgba(9,132,227,0.15);display:flex;align-items:center;justify-content:center;">
-                  <i class="fas fa-layer-group" style="color:var(--color-primary);font-size:0.9rem;"></i>
-                </div>
-                <div style="display:flex;flex-direction:column;justify-content:center;gap:4px;">
-                  <div style="width:80px;height:7px;border-radius:4px;background:rgba(9,132,227,0.25);"></div>
-                  <div style="width:52px;height:6px;border-radius:4px;background:rgba(9,132,227,0.12);"></div>
-                </div>
-              </div>
-            </div>
-            <div style="display:flex;gap:0.5rem;margin-top:0.6rem;">
-              <div style="flex:1;height:24px;border-radius:6px;background:var(--color-primary);"></div>
-              <div style="flex:1;height:24px;border-radius:6px;background:var(--color-border);"></div>
-            </div>
-          </div>
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="hero-eyebrow fade-in">
+          <span class="hero-eyebrow-dot"></span>
+          Available for new opportunities
         </div>
 
-        <!-- Card 2: Colour palette -->
-        <div class="ui-card ui-card-palette">
-          <div class="palette-label">Colour System</div>
-          <div class="palette-chips">
-            <div class="chip" style="background:var(--color-primary);" title="var(--color-primary)"></div>
-            <div class="chip" style="background:var(--color-primary);"></div>
-            <div class="chip" style="background:var(--color-primary-light);"></div>
-            <div class="chip" style="background:var(--color-accent);"></div>
-            <div class="chip" style="background:#fdcb6e;"></div>
-          </div>
-          <div class="palette-row c1"></div>
-          <div class="palette-row c2"></div>
-          <div class="palette-row c3"></div>
+        <h1 class="hero-h1 fade-in">
+          Frontend Developer <br class="desktop-only">
+          & <span class="text-gradient">UI/UX Designer</span>
+        </h1>
+
+        <p class="hero-sub fade-in">
+          Designing and building mobile-first EdTech solutions <br class="desktop-only">
+          with a focus on user retention and interactive learning.
+        </p>
+
+        <div class="hero-ctas fade-in">
+          <a href="frontend-projects.html" class="hero-cta-primary">
+            <i class="fas fa-code"></i>
+            View Projects
+          </a>
+          <a href="design-projects.html" class="hero-cta-secondary">
+            <i class="fas fa-pen-nib"></i>
+            View Design Work
+          </a>
         </div>
-
-        <!-- Card 3: Component usage stats -->
-        <div class="ui-card ui-card-stat">
-          <div class="stat-label">Components</div>
-          <div class="stat-items">
-            <div class="stat-item">
-              <span class="stat-name">Buttons</span>
-              <div class="stat-bar-wrap">
-                <div class="stat-bar" style="width:90%;background:var(--color-primary);"></div>
-              </div>
-              <span class="stat-val">18</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-name">Cards</span>
-              <div class="stat-bar-wrap">
-                <div class="stat-bar" style="width:75%;background:var(--color-primary);"></div>
-              </div>
-              <span class="stat-val">14</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-name">Forms</span>
-              <div class="stat-bar-wrap">
-                <div class="stat-bar" style="width:55%;background:var(--color-accent);"></div>
-              </div>
-              <span class="stat-val">10</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-name">Modals</span>
-              <div class="stat-bar-wrap">
-                <div class="stat-bar" style="width:40%;background:var(--color-primary-light);"></div>
-              </div>
-              <span class="stat-val">7</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 4: Notification badge -->
-        <div class="ui-card ui-card-badge">
-          <div class="badge-icon" style="background:linear-gradient(135deg,var(--color-accent),#00cec9);">
-            <i class="fas fa-check"></i>
-          </div>
-          <div class="badge-text">
-            <span class="badge-title">Design approved ?</span>
-            <span class="badge-sub">Sprint 3 · just now</span>
-          </div>
-        </div>
-
-      </div><!-- /ui-stage -->
-    </div><!-- /hero-right -->
-
+      </div>
+    </div>
   </header>
 
-  <!-- ------------------------------------------- 2. FEATURED WORK --- -->
-
-
-  <section id="featured-work" class="work-section res-padding" style="background: var(--color-bg);">
+  <!-- ------------------------------------------- 2. PROFESSIONAL EXPERIENCE --- -->
+  <section id="experience" class="res-padding" style="background: var(--color-bg);">
     <div class="container">
-      <span class="section-label fade-in">Selected Work</span>
-      <h2 class="section-title fade-in res-h2" style="margin-top: 0.25rem; text-align: left;">Featured Projects</h2>
-      <p class="fade-in"
-        style="color: var(--color-text-secondary); font-size: 1.05rem; max-width: 560px; margin-bottom: 2.5rem; text-align: left;">
-        A curated selection of frontend engineering and product design work — built for scale, performance, and real
-        users.
-      </p>
-
-      <div class="fp-grid fade-in">
-
-        <!-- -- Card 1: LMS Platform -- -->
-        <div class="fp-card">
-          <div class="fp-thumb" style="background: linear-gradient(135deg, #e8f4fd 0%, #cde8f9 100%);">
-            <div class="fp-thumb-placeholder">
-              <img src="./icons/LMS.png" alt="LMS Platform"
-                style="height: 90px; width: auto; object-fit: contain; opacity: 0.9;" />
-            </div>
-          </div>
-          <div class="fp-body">
-            <span class="fp-tag">Frontend Engineering</span>
-            <h3 class="fp-title">LMS Platform</h3>
-            <p class="fp-desc">A white-label, multi-tenant learning management system serving thousands of students
-              across three educational brands — architected for modular reskinning via CSS variables.</p>
-            <div class="fp-stack">
-              <span class="fp-pill">HTML5</span>
-              <span class="fp-pill">CSS Variables</span>
-              <span class="fp-pill">Vanilla JS</span>
-              <span class="fp-pill">REST API</span>
-            </div>
-            <a href="lms-group.html" class="fp-link">
-              View Project <i class="fas fa-arrow-right fp-arrow"></i>
-            </a>
-          </div>
-        </div>
-
-        <!-- -- Card 2: Assessment Engine -- -->
-        <div class="fp-card">
-          <div class="fp-thumb" style="background: linear-gradient(135deg, #f3ecff 0%, #e4d5ff 100%);">
-            <div class="fp-thumb-placeholder">
-              <img src="./icons/topic-prep.png" alt="Assessment Engine"
-                style="height: 90px; width: auto; object-fit: contain; opacity: 0.9;" />
-            </div>
-          </div>
-          <div class="fp-body">
-            <span class="fp-tag" style="color: var(--color-primary);">Frontend Engineering</span>
-            <h3 class="fp-title">Assessment Engine</h3>
-            <p class="fp-desc">A gamified test-prep engine with dynamic journey-map UI, randomised micro-assessments,
-              live scoring, and offline-first caching for low-connectivity environments.</p>
-            <div class="fp-stack">
-              <span class="fp-pill">React Native</span>
-              <span class="fp-pill">Firebase</span>
-              <span class="fp-pill">Local Storage</span>
-              <span class="fp-pill">State Machines</span>
-            </div>
-            <a href="topic-prep.html" class="fp-link" style="color: var(--color-primary);">
-              View Project <i class="fas fa-arrow-right fp-arrow"></i>
-            </a>
-          </div>
-        </div>
-
-        <!-- -- Card 3: Placement Automation Dashboard -- -->
-        <div class="fp-card">
-          <div class="fp-thumb" style="background: linear-gradient(135deg, #e8fff6 0%, #c8f5e5 100%);">
-            <div class="fp-thumb-placeholder">
-              <img src="./icons/analysis.png" alt="Placement Automation Dashboard"
-                style="height: 90px; width: auto; object-fit: contain; opacity: 0.9;" />
-            </div>
-          </div>
-          <div class="fp-body">
-            <span class="fp-tag" style="color: var(--color-accent);">Data & Dashboard</span>
-            <h3 class="fp-title">Placement Automation Dashboard</h3>
-            <p class="fp-desc">A unified data dashboard connecting university students to employer placement drives with
-              automated filtering, virtualized data grids, and real-time WebSocket status updates.</p>
-            <div class="fp-stack">
-              <span class="fp-pill">React</span>
-              <span class="fp-pill">TypeScript</span>
-              <span class="fp-pill">WebSockets</span>
-              <span class="fp-pill">Tailwind</span>
-            </div>
-            <a href="placement-automation.html" class="fp-link" style="color: var(--color-accent);">
-              View Project <i class="fas fa-arrow-right fp-arrow"></i>
-            </a>
-          </div>
-        </div>
-
-        <!-- -- Card 4: Interactive UI Animations -- -->
-        <div class="fp-card">
-          <div class="fp-thumb" style="background: linear-gradient(135deg, #fff5e8 0%, #fde8c8 100%);">
-            <div class="fp-thumb-placeholder">
-              <img src="./icons/web-design.png" alt="Interactive UI Animations"
-                style="height: 90px; width: auto; object-fit: contain; opacity: 0.9;" />
-            </div>
-          </div>
-          <div class="fp-body">
-            <span class="fp-tag" style="color: var(--color-accent);">UI Experiments</span>
-            <h3 class="fp-title">Interactive UI Animations</h3>
-            <p class="fp-desc">A GitHub repo of 40+ standalone micro-interactions, canvas animations, and custom widgets
-              — covering complex CSS 3D transforms, SVG path animations and gesture physics.</p>
-            <div class="fp-stack">
-              <span class="fp-pill">Vanilla JS</span>
-              <span class="fp-pill">HTML5 Canvas</span>
-              <span class="fp-pill">CSS Animations</span>
-              <span class="fp-pill">SVG</span>
-            </div>
-            <a href="https://github.com/mini1796" target="_blank" rel="noopener" class="fp-link"
-              style="color: var(--color-accent);">
-              View Project <i class="fas fa-arrow-right fp-arrow"></i>
-            </a>
-          </div>
-        </div>
-
-      </div><!-- /fp-grid -->
-
-      <div class="fade-in" style="margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-        <a href="frontend-projects.html" class="btn btn-primary" style="padding: 0.85rem 2rem;">All Engineering
-          Projects</a>
-        <a href="design-projects.html" class="btn btn-secondary" style="padding: 0.85rem 2rem;">All Design Work</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ------------------------------------------- 3. ENGINEERING PROJECTS --- -->
-
-
-  <section id="engineering-projects" class="res-padding" style="background: var(--color-bg-secondary);">
-    <div class="container">
-      <span class="section-label fade-in" style="color:var(--color-primary);">Built &amp; Shipped</span>
-      <h2 class="section-title fade-in res-h2" style="margin-top: 0.25rem; text-align: left;">Frontend Engineering</h2>
-      <p class="fade-in"
-        style="color: var(--color-text-secondary); font-size: 1.05rem; max-width: 560px; margin-bottom: 2.5rem; text-align: left;">
-        Production-grade frontend builds — focused on performance, architecture, and real-world usability.
-      </p>
-
-      <div class="eng-list fade-in">
-
-        <!-- -- Card 1: LMS Platform -- -->
-        <div class="eng-card">
-          <div class="eng-screenshot" style="background: linear-gradient(135deg, #fce8f0 0%, #f9d0e4 100%);">
-            <span class="eng-num">01</span>
-            <img src="./icons/LMS.png" alt="LMS Platform screenshot" />
-          </div>
-          <div class="eng-content">
-            <span class="eng-type">Multi-tenant · LMS</span>
-            <h3 class="eng-title">LMS Platform</h3>
-            <p class="eng-desc">A white-label learning management system serving thousands of students across multiple
-              educational brands. Scoped CSS variable architecture lets the UI reskin instantly without touching JS
-              logic.</p>
-            <div class="eng-stack">
-              <span class="eng-pill">HTML5</span>
-              <span class="eng-pill">CSS Variables</span>
-              <span class="eng-pill">Vanilla JS</span>
-              <span class="eng-pill">REST API</span>
-              <span class="eng-pill">White-label</span>
-            </div>
-            <div class="eng-actions">
-              <a href="lms-group.html" class="eng-btn-primary"><i class="fas fa-external-link-alt"
-                  style="font-size:0.8em;"></i> Live Demo</a>
-              <a href="lms-group.html" class="eng-btn-secondary"><i class="fas fa-book-open"
-                  style="font-size:0.8em;"></i> Case Study</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- -- Card 2: Assessment Engine -- -->
-        <div class="eng-card">
-          <div class="eng-screenshot" style="background: linear-gradient(135deg, #f3ecff 0%, #e4d5ff 100%);">
-            <span class="eng-num">02</span>
-            <img src="./icons/topic-prep.png" alt="Assessment Engine screenshot" />
-          </div>
-          <div class="eng-content">
-            <span class="eng-type">Mobile · Gamification</span>
-            <h3 class="eng-title">Assessment Engine</h3>
-            <p class="eng-desc">Gamified test-prep engine with a journey-map UI, randomised micro-assessments, live
-              scoring, and offline-first caching — designed for low-bandwidth student environments.</p>
-            <div class="eng-stack">
-              <span class="eng-pill">React Native</span>
-              <span class="eng-pill">Firebase</span>
-              <span class="eng-pill">State Machines</span>
-              <span class="eng-pill">LocalStorage</span>
-            </div>
-            <div class="eng-actions">
-              <a href="topic-prep.html" class="eng-btn-primary"><i class="fas fa-external-link-alt"
-                  style="font-size:0.8em;"></i> Live Demo</a>
-              <a href="topic-prep.html" class="eng-btn-secondary"><i class="fas fa-book-open"
-                  style="font-size:0.8em;"></i> Case Study</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- -- Card 3: Placement Automation Dashboard -- -->
-        <div class="eng-card">
-          <div class="eng-screenshot" style="background: linear-gradient(135deg, #e8fff6 0%, #c8f5e5 100%);">
-            <span class="eng-num">03</span>
-            <img src="./icons/analysis.png" alt="Placement Automation Dashboard screenshot" />
-          </div>
-          <div class="eng-content">
-            <span class="eng-type">Dashboard · Data</span>
-            <h3 class="eng-title">Placement Automation Dashboard</h3>
-            <p class="eng-desc">Unified employer–student placement dashboard with multi-parameter filtering, virtualized
-              data grids, and real-time WebSocket status updates powering live drive notifications.</p>
-            <div class="eng-stack">
-              <span class="eng-pill">React</span>
-              <span class="eng-pill">TypeScript</span>
-              <span class="eng-pill">WebSockets</span>
-              <span class="eng-pill">Tailwind CSS</span>
-            </div>
-            <div class="eng-actions">
-              <a href="placement-automation.html" class="eng-btn-primary"><i class="fas fa-external-link-alt"
-                  style="font-size:0.8em;"></i> Live Demo</a>
-              <a href="placement-automation.html" class="eng-btn-secondary"><i class="fas fa-book-open"
-                  style="font-size:0.8em;"></i> Case Study</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- -- Card 4: Reels-style Video Feed -- -->
-        <div class="eng-card">
-          <div class="eng-screenshot" style="background: linear-gradient(135deg, #fff5e8 0%, #fde8c8 100%);">
-            <span class="eng-num">04</span>
-            <img src="./icons/web-design.png" alt="Reels-style Video Feed screenshot" />
-          </div>
-          <div class="eng-content">
-            <span class="eng-type">Performance · Mobile UI</span>
-            <h3 class="eng-title">Reels-style Video Feed</h3>
-            <p class="eng-desc">Infinite-scroll vertical video feed with DOM node recycling — reduced active memory
-              footprint by 80% on entry-level devices. Uses IntersectionObserver for auto-play/pause and smooth swipe
-              physics.</p>
-            <div class="eng-stack">
-              <span class="eng-pill">Vanilla JS</span>
-              <span class="eng-pill">IntersectionObserver</span>
-              <span class="eng-pill">CSS Animations</span>
-              <span class="eng-pill">DOM Recycling</span>
-            </div>
-            <div class="eng-actions">
-              <a href="reels-interface.html" class="eng-btn-primary"><i class="fas fa-external-link-alt"
-                  style="font-size:0.8em;"></i> Live Demo</a>
-              <a href="reels-interface.html" class="eng-btn-secondary"><i class="fas fa-book-open"
-                  style="font-size:0.8em;"></i> Case Study</a>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /eng-list -->
-
-      <div class="fade-in" style="margin-top: 2.5rem;">
-        <a href="frontend-projects.html" class="eng-btn-primary" style="display:inline-flex;">
-          <i class="fas fa-layer-group" style="font-size:0.85em;"></i> View All Engineering Projects
-        </a>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ------------------------------------------- 4. DESIGN CASE STUDIES --- -->
-
-
-  <section id="design-case-studies" class="res-padding" style="background: var(--color-bg);">
-    <div class="container">
-      <span class="section-label fade-in" style="color:var(--color-primary);">UX &amp; Prototyping</span>
-      <h2 class="section-title fade-in res-h2" style="margin-top: 0.25rem; text-align: left;">UI/UX Case Studies</h2>
-      <p class="fade-in"
-        style="color: var(--color-text-secondary); font-size: 1.05rem; max-width: 600px; margin-bottom: 3rem; text-align: left;">
-        End-to-end product design cycles. Interact directly with the high-fidelity Figma prototypes embedded below.
-      </p>
-
-      <div class="ux-grid fade-in">
-
-        <!-- -- Card 1: TopicPrep -- -->
-        <div class="ux-card">
-          <div class="ux-embed-wrapper">
-            <!-- Simulated Figma iframe. Replace src with real Figma embed URL -->
-            <div class="ux-embed-placeholder">
-              <i class="fab fa-figma" style="color:var(--color-primary);"></i>
-              <span>Figma Prototype</span>
-            </div>
-            <!-- Example: <iframe src="https://www.figma.com/embed?embed_host=share&url=..."></iframe> -->
-            <iframe src="about:blank" style="opacity: 0;"></iframe>
-          </div>
-          <div class="ux-content">
-            <h3 class="ux-title">TopicPrep — Gamified Test Prep</h3>
-            <p class="ux-desc">Full UX research cycle: user interviews, pain-point mapping, lo-fi wireframes, and
-              vibrant interactive prototypes for a mobile-first exam prep application.</p>
-            <a href="topic-prep.html" class="ux-link">View Case Study <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-
-        <!-- -- Card 2: SkillMedha -- -->
-        <div class="ux-card">
-          <div class="ux-embed-wrapper">
-            <div class="ux-embed-placeholder">
-              <i class="fab fa-figma" style="color:var(--color-primary);"></i>
-              <span>Figma Prototype</span>
-            </div>
-            <iframe src="about:blank" style="opacity: 0;"></iframe>
-          </div>
-          <div class="ux-content">
-            <h3 class="ux-title">SkillMedha — Multi-portal SaaS</h3>
-            <p class="ux-desc">Designed 40+ screens across student, admin, and employer portals. Established a strict
-              Auto-Layout design language that scaled effortlessly across the full suite.</p>
-            <a href="skill-medha.html" class="ux-link">View Case Study <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-
-        <!-- -- Card 3: LMS Redesign -- -->
-        <div class="ux-card">
-          <div class="ux-embed-wrapper">
-            <div class="ux-embed-placeholder">
-              <i class="fab fa-figma" style="color:var(--color-accent);"></i>
-              <span>Figma Prototype</span>
-            </div>
-            <iframe src="about:blank" style="opacity: 0;"></iframe>
-          </div>
-          <div class="ux-content">
-            <h3 class="ux-title">LMS — Progress Redesign</h3>
-            <p class="ux-desc">Redesigned the primary progress visualization layer for an enterprise LMS platform,
-              validating the UI through rigorous A/B testing and heuristic audits.</p>
-            <a href="lms-group.html" class="ux-link">View Case Study <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-
-      </div><!-- /ux-grid -->
-
-      <div class="fade-in" style="margin-top: 3rem; text-align: center;">
-        <a href="design-projects.html" class="btn btn-secondary" style="padding: 0.85rem 2.2rem; font-size: 1rem;">
-          <i class="fas fa-layer-group" style="font-size:0.9em; margin-right:0.4rem;"></i> View All Design Work
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ------------------------------------------- 5. DESIGN SYSTEMS --- -->
-
-
-  <section id="design-systems" class="res-padding" style="background: var(--color-bg);">
-    <div class="container">
-      <span class="section-label fade-in" style="color:var(--color-primary);">Consistency at Scale</span>
-      <h2 class="section-title fade-in res-h2" style="margin-top: 0;">Design System</h2>
-      <p class="fade-in"
-        style="color: var(--color-text-secondary); font-size: 1.1rem; max-width: 600px; margin-bottom: 3rem;">
-        Component libraries and token-based design systems I've built or contributed to — bridging Figma and code.
-      </p>
-
-      <div class="ds-showcase-grid fade-in">
-        <!-- Colors -->
-        <div class="ds-showcase-card">
-          <div class="ds-showcase-title"><i class="fas fa-palette"></i> Color Palette</div>
-          <div class="ds-demo-colors">
-            <div class="ds-color-swatch">
-              <div class="ds-color-circle" style="background:var(--color-primary);"></div><span
-                class="ds-color-label">Primary</span>
-            </div>
-            <div class="ds-color-swatch">
-              <div class="ds-color-circle" style="background:var(--color-text);"></div><span
-                class="ds-color-label">Dark</span>
-            </div>
-            <div class="ds-color-swatch">
-              <div class="ds-color-circle" style="background:var(--color-text-secondary);"></div><span
-                class="ds-color-label">Gray</span>
-            </div>
-            <div class="ds-color-swatch">
-              <div class="ds-color-circle" style="background:var(--color-bg); border: 1px solid var(--color-border);"></div>
-              <span class="ds-color-label">Light</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Typography -->
-        <div class="ds-showcase-card">
-          <div class="ds-showcase-title"><i class="fas fa-font"></i> Typography</div>
-          <div class="ds-demo-type">
-            <div class="ds-type-row"><span class="ds-type-label">H1</span>
-              <h1 class="ds-type-h1">Heading 1</h1>
-            </div>
-            <div class="ds-type-row"><span class="ds-type-label">H2</span>
-              <h2 class="ds-type-h2">Heading 2</h2>
-            </div>
-            <div class="ds-type-row"><span class="ds-type-label">P</span>
-              <p class="ds-type-p">Body text typography.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Buttons -->
-        <div class="ds-showcase-card">
-          <div class="ds-showcase-title"><i class="fas fa-hand-pointer"></i> Buttons</div>
-          <div class="ds-demo-btn-group">
-            <button class="ds-demo-btn-primary">Primary Button</button>
-            <button class="ds-demo-btn-secondary">Secondary</button>
-          </div>
-        </div>
-
-        <!-- Input Field -->
-        <div class="ds-showcase-card">
-          <div class="ds-showcase-title"><i class="fas fa-keyboard"></i> Input Field</div>
-          <div class="ds-demo-input-wrapper">
-            <label class="ds-demo-label">Email Address</label>
-            <input type="email" class="ds-demo-input" placeholder="hello@example.com" />
-          </div>
-        </div>
-
-        <!-- Cards -->
-        <div class="ds-showcase-card" style="grid-column: 1 / -1;">
-          <div class="ds-showcase-title"><i class="fas fa-layer-group"></i> Components (Cards)</div>
-          <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
-            <div class="ds-demo-card" style="flex: 1; min-width: 240px;">
-              <div class="ds-demo-avatar">YS</div>
-              <div class="ds-demo-card-content">
-                <h4>Yamini Sappa</h4>
-                <p>Frontend Engineer</p>
-              </div>
-            </div>
-            <div class="ds-demo-card" style="flex: 1; min-width: 240px;">
-              <div class="ds-demo-avatar" style="background: var(--color-border); color: var(--color-text-secondary);">
-                <i class="fas fa-bell"></i>
-              </div>
-              <div class="ds-demo-card-content">
-                <h4>System Updates</h4>
-                <p>Component library synced</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="fade-in" style="margin-top: 3.5rem; text-align: center;">
-        <a href="design-system.html" class="btn btn-secondary" style="padding: 0.9rem 2.5rem; font-size: 1.05rem;">
-          <i class="fas fa-sitemap" style="font-size:0.9em; margin-right:0.4rem;"></i> View Full Design System
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ------------------------------------------- 6. IMPACT METRICS --- -->
-  <style>
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-      margin-top: 1rem;
-    }
-
-    @media (max-width: 900px) {
-      .metrics-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-      }
-    }
-
-    @media (max-width: 500px) {
-      .metrics-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .metric-card {
-      background: var(--color-bg-secondary);
-      border: 1px solid var(--color-border);
-      border-radius: 12px;
-      padding: 2.5rem 1.5rem;
-      text-align: center;
-      transition: transform 0.25s, box-shadow 0.25s;
-    }
-
-    .metric-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 30px rgba(251, 158, 187, 0.12);
-      border-color: var(--color-border);
-    }
-
-    .metric-number {
-      font-size: 3.8rem;
-      font-weight: 800;
-      color: var(--color-primary);
-      line-height: 1;
-      margin-bottom: 0.5rem;
-      letter-spacing: -1px;
-    }
-
-    .metric-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--color-text);
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.35rem;
-    }
-
-    .metric-title i {
-      font-size: 0.85em;
-    }
-
-    .metric-desc {
-      font-size: 0.9rem;
-      color: var(--color-text-secondary);
-      line-height: 1.5;
-      margin: 0;
-      max-width: 200px;
-      margin: 0 auto;
-    }
-  </style>
-
-  <section id="impact" class="res-padding" style="background: var(--color-bg-secondary);">
-    <div class="container">
-      <span class="section-label fade-in"
-        style="color:var(--color-primary); text-align: center; display: block;">Measured Results</span>
-      <h2 class="section-title fade-in res-h2" style="margin-top: 0.25rem; text-align: center;">
-        Impact &amp; Achievements
+      <span class="section-label fade-in">Career Path</span>
+      <h2 class="section-title fade-in res-h2" style="margin-top: 0.25rem; text-align: left;">Professional Experience
       </h2>
 
-      <div class="metrics-grid fade-in">
-
-        <!-- Metric 1 -->
-        <div class="metric-card">
-          <div class="metric-number">30%</div>
-          <div class="metric-title"><i class="fas fa-arrow-up" style="color: var(--color-accent);"></i> Engagement</div>
-          <p class="metric-desc">Lifted student engagement on the LMS through a simplified progress visualization layer.
+      <div class="exp-list fade-in" style="margin-top: 3rem;">
+        <!-- VivTej -->
+        <div class="exp-item"
+          style="margin-bottom: 3rem; position: relative; padding-left: 2rem; border-left: 2px solid var(--color-primary);">
+          <div
+            style="position: absolute; left: -9px; top: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--color-primary); border: 4px solid var(--color-bg);">
+          </div>
+          <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">VivTej Educational Services</h3>
+          <div style="color: var(--color-primary); font-weight: 600; margin-bottom: 1rem;">Product Developer | 03/2024 -
+            Present</div>
+          <p style="color: var(--color-text-secondary); line-height: 1.7; max-width: 800px;">
+            Lead End-to-End Designer and Frontend Developer for mobile-first EdTech solutions. Conceptualized and
+            designed high-fidelity 'reels-style' feeds and architected govt exam prep platforms with streak trackers and
+            gamified badges.
           </p>
         </div>
 
-        <!-- Metric 2 -->
-        <div class="metric-card">
-          <div class="metric-number">50%</div>
-          <div class="metric-title"><i class="fas fa-arrow-down" style="color: var(--color-primary);"></i> Load Time
+        <!-- Teman Senior -->
+        <div class="exp-item"
+          style="margin-bottom: 3rem; position: relative; padding-left: 2rem; border-left: 2px solid var(--color-border);">
+          <div
+            style="position: absolute; left: -9px; top: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--color-border); border: 4px solid var(--color-bg);">
           </div>
-          <p class="metric-desc">Cut average times in half using virtualized DOM rendering and lazy loading.</p>
+          <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Teman Edtech Pvt Ltd</h3>
+          <div style="color: var(--color-text-secondary); font-weight: 600; margin-bottom: 1rem;">Senior Full Stack Web
+            Developer | 05/2023 - 02/2024</div>
+          <p style="color: var(--color-text-secondary); line-height: 1.7; max-width: 800px;">
+            Lead Designer and Core Developer for enterprise-level LMS applications. Designed Skill Medha's interface and
+            developed automated placement workflows, resume builders, and recruiter portals.
+          </p>
         </div>
 
-        <!-- Metric 3 -->
-        <div class="metric-card">
-          <div class="metric-number">25%</div>
-          <div class="metric-title"><i class="fas fa-arrow-up" style="color: var(--color-primary-light);"></i> Retention</div>
-          <p class="metric-desc">Improved 3-day retention via completely redesigned mobile micro-interactions.</p>
+        <!-- Teman Junior -->
+        <div class="exp-item"
+          style="position: relative; padding-left: 2rem; border-left: 2px solid var(--color-border);">
+          <div
+            style="position: absolute; left: -9px; top: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--color-border); border: 4px solid var(--color-bg);">
+          </div>
+          <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Teman Edtech Pvt Ltd</h3>
+          <div style="color: var(--color-text-secondary); font-weight: 600; margin-bottom: 1rem;">Junior Software
+            Developer & Trainer | 02/2022 - 04/2023</div>
+          <p style="color: var(--color-text-secondary); line-height: 1.7; max-width: 800px;">
+            Designed end-to-end UI/UX for Assesspal and Techie Panda LMS. Developed instructor dashboards, student
+            portals, and high-performance test interfaces while delivering technical training on frontend best
+            practices.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------- 3. SKILLS --- -->
+  <section id="skills" class="res-padding" style="background: var(--color-bg-secondary);">
+    <div class="container">
+      <h2 class="section-title fade-in res-h2" style="margin-top: 0; text-align: left;">Skills</h2>
+      <p class="fade-in"
+        style="color: var(--color-text-secondary); font-size: 1.1rem; max-width: 600px;text-align: left;margin-bottom: 3rem;">
+        The technologies, tools, and disciplines I reach for every day to build high-performance products.
+      </p>
+
+      <div class="skills-grid fade-in">
+
+        <div class="skill-group">
+          <h4>Frontend Engineering</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3</span>
+            <span class="skill-tag">JavaScript (ES6+)</span>
+            <span class="skill-tag">React</span>
+            <!-- <span class="skill-tag">Redux</span> -->
+            <span class="skill-tag">REST APIs</span>
+            <span class="skill-tag">Git</span>
+          </div>
         </div>
 
-        <!-- Metric 4 -->
-        <div class="metric-card">
-          <div class="metric-number">40+</div>
-          <div class="metric-title">Pages Designed</div>
-          <p class="metric-desc">End-to-end interface design across a complex multi-product SaaS ecosystem.</p>
+        <div class="skill-group">
+          <h4>UI/UX Design</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">Auto-Layout</span>
+            <span class="skill-tag">Prototyping</span>
+            <span class="skill-tag">User Research</span>
+            <span class="skill-tag">Wireframing</span>
+            <span class="skill-tag">Usability Testing</span>
+            <span class="skill-tag">Information Architecture</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h4>Performance &amp; Analysis</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Power BI</span>
+            <span class="skill-tag">DAX</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h4>AI &amp; Innovation</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Prompt Engineering</span>
+            <span class="skill-tag">AI-Assisted Coding</span>
+            <span class="skill-tag">Generative Design</span>
+            <span class="skill-tag">LLM Integration</span>
+          </div>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- ------------------------------------------- 7. WORKFLOW --- -->
+  <!-- ------------------------------------------- 4. ABOUT --- -->
+  <section id="about" class="res-padding" style="background: var(--color-bg);">
+    <div class="container">
+      <h2 class="section-title fade-in res-h2" style="margin-top: 0; text-align: left;">About</h2>
+
+      <div class="about-grid fade-in">
+
+        <!-- Profile & Buttons -->
+        <div class="about-profile-col">
+          <div class="about-profile-img">
+            <img loading="lazy" src="./assets/profile.jpg" alt="Yamini Sappa"
+              onerror="this.src='https://via.placeholder.com/240x240?text=Yamini+Sappa'">
+          </div>
+
+          <div class="about-actions">
+            <a href="./Yamini_Resume_Front%20End%20Developer.pdf" class="btn btn-primary" target="_blank"
+              style="padding: 0.7rem 1.4rem; font-size: 0.9rem;">
+              <i class="fas fa-file-download" style="margin-right: 0.5rem;"></i> Resume
+            </a>
+            <a href="https://www.linkedin.com/in/yamini-sappa" target="_blank" class="btn btn-secondary"
+              style="padding: 0.7rem 1.4rem; font-size: 0.9rem;">
+              <i class="fab fa-linkedin" style="margin-right: 0.5rem;"></i> LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <!-- Bio & Details -->
+        <div>
+          <p style="font-size: 1.15rem; color: var(--color-text); line-height: 1.8; margin-bottom: 1.25rem;">
+            I'm <strong>Yamini Sappa</strong> — a Frontend Software Engineer and UI/UX Designer who works at the
+            intersection of product design and scalable web development.
+          </p>
+          <p class="about-bio-text">
+            Over the past 4+ years, I’ve designed and built production-grade digital products including learning
+            platforms, assessment systems, and enterprise dashboards used in EdTech environments. My work spans the
+            entire product lifecycle — from wireframing and high-fidelity UI design in Figma to building responsive,
+            high-performance interfaces using modern frontend technologies.
+          </p>
+          <p class="about-bio-text">
+            Across multiple platforms, I’ve designed 40+ product screens, developed complex UI systems, and implemented
+            modular component architectures that support scalable product growth.
+          </p>
+          <p class="about-bio-text">
+            What differentiates my work is the ability to operate across both design and engineering layers, strategically leveraging AI tools to accelerate prototyping and ensure high-quality, performant code. I can craft a pixel-perfect interface while also architecting the frontend logic that powers it. This dual perspective allows me to move quickly from concept to production while maintaining usability, performance, and visual consistency.
+          </p>
+          <p class="about-bio-text" style="font-weight: 600;">
+            My focus is on building intuitive, scalable product experiences where thoughtful design and efficient
+            engineering come together.
+          </p>
+        </div>
+      </div>
+
+      <div class="about-details-grid">
+        <!-- Education -->
+        <div class="about-detail-card">
+          <div class="about-detail-icon"><i class="fas fa-graduation-cap"></i></div>
+          <div class="about-detail-title">Education</div>
+          <div class="about-detail-subtitle">Bachelor’s & Master’s — Planning & Technology (SPA New Delhi)</div>
+          <div class="about-detail-desc">Human-centered problem solving, systems thinking, and product design
+            foundations.</div>
+        </div>
+
+        <!-- Experience -->
+        <div class="about-detail-card">
+          <div class="about-detail-icon"><i class="fas fa-briefcase"></i></div>
+          <div class="about-detail-title">Experience</div>
+          <div class="about-detail-subtitle">4+ Years · Product Development & Frontend Engineering</div>
+          <div class="about-detail-desc">Built LMS, Assessment platforms, placement dashboards, and mobile-first
+            apps.</div>
+        </div>
+
+        <!-- Location -->
+        <div class="about-detail-card">
+          <div class="about-detail-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="about-detail-title">Location</div>
+          <div class="about-detail-subtitle">Remote / Hybrid</div>
+          <div class="about-detail-desc">India · Open to Remote / Global Opportunities. Available for collaboration
+            across timezones.</div>
+        </div>
+
+        <!-- Interests -->
+        <div class="about-detail-card">
+          <div class="about-detail-icon"><i class="fas fa-heart"></i></div>
+          <div class="about-detail-title">Interests</div>
+          <div class="about-detail-subtitle">EdTech & Product Design</div>
+          <div class="about-detail-desc">Passionate about design tokens, performance optimization, and accessibility
+            standards.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------- 5. FEATURED PROJECTS --- -->
+  <section id="featured-work" class="work-section res-padding" style="background: var(--color-bg-secondary);">
+    <div class="container">
+      <h2 class="section-title fade-in res-h2" style="margin-top: 0.25rem; text-align: left;">Featured Projects</h2>
+      <div class="fp-grid fade-in">
+
+        <!-- -- Card 1: TEJ (Current Affairs Reels) -- -->
+        <div class="fp-card">
+          <div class="fp-thumb" style="background: linear-gradient(135deg, #fff5e8 0%, #fde8c8 100%);">
+            <div class="fp-thumb-placeholder">
+              <img loading="lazy" src="./icons/web-design.png" alt="TEJ App"
+                style="height: 90px; width: auto; object-fit: contain; opacity: 0.9;" />
+            </div>
+          </div>
+          <div class="fp-body">
+            <span class="fp-tag">Mobile App · EdTech</span>
+            <h3 class="fp-title">TEJ App</h3>
+            <p class="fp-desc">Lead Designer for a fast-paced 'reels' style current affairs app. Conceptualized the end-to-end UI/UX, motion language, and high-fidelity prototypes for seamless mobile learning.</p>
+            <div class="fp-stack">
+              <span class="fp-pill">React</span>
+              <span class="fp-pill">CSS Animations</span>
+              <span class="fp-pill">Figma</span>
+            </div>
+            <a href="reels-interface.html" class="fp-link">
+              View Project <i class="fas fa-arrow-right fp-arrow"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- -- Card 2: Topic Prep -- -->
+        <div class="fp-card">
+          <div class="fp-thumb" style="background: linear-gradient(135deg, #f3ecff 0%, #e4d5ff 100%);">
+            <div class="fp-thumb-placeholder">
+              <img loading="lazy" src="./icons/topic-prep.png" alt="Topic Prep"
+                style="height: 90px; width: auto; object-fit: contain; opacity: 0.9;" />
+            </div>
+          </div>
+          <div class="fp-body">
+            <span class="fp-tag">Exam Prep · Mobile</span>
+            <h3 class="fp-title">Topic Prep</h3>
+            <p class="fp-desc">Designed and developed a comprehensive government exam preparation platform. Created the
+              entire UI/UX flow and frontend architecture to optimize student learning and retention.</p>
+            <div class="fp-stack">
+              <span class="fp-pill">UI/UX Flow</span>
+              <span class="fp-pill">Retention UI</span>
+              <span class="fp-pill">Mobile Architecture</span>
+            </div>
+            <div class="fp-actions">
+              <a href="lms-group.html" class="fp-link">
+                Case Study <i class="fas fa-arrow-right fp-arrow"></i>
+              </a>
+              <a href="https://www.figma.com/design/2AcxlHpZkKJsjQPYGeDNIa/TopicQuiz-Mobile-App" target="_blank" class="fp-link">
+                Prototype <i class="fab fa-figma"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- -- Card 3: Skill Medha -- -->
+        <div class="fp-card">
+          <div class="fp-thumb" style="background: linear-gradient(135deg, #e8fff6 0%, #c8f5e5 100%);">
+            <div class="fp-thumb-placeholder">
+              <img loading="lazy" src="./icons/skill-medha.png" alt="Skill Medha"
+                style="height: 90px; width: auto; object-fit: contain; opacity: 0.9;" />
+            </div>
+          </div>
+          <div class="fp-body">
+            <span class="fp-tag">Placement Automation</span>
+            <h3 class="fp-title">Skill Medha</h3>
+            <p class="fp-desc">End-to-end design and frontend development for a placement automation platform.
+              Integrated
+              complex dashboards and learning modules with basic backend API connectivity.</p>
+            <div class="fp-glimpses">
+              <img src="./images/skillmedha1.jpg" alt="Glimpse 1" loading="lazy">
+              <img src="./images/skillmedha2.jpg" alt="Glimpse 2" loading="lazy">
+              <img src="./images/skillmedha3.jpg" alt="Glimpse 3" loading="lazy">
+              <img src="./images/skillmedha4.jpg" alt="Glimpse 4" loading="lazy">
+            </div>
+            <div class="fp-stack">
+              <span class="fp-pill">LMS Workflows</span>
+              <span class="fp-pill">Dashboards</span>
+              <span class="fp-pill">Figma</span>
+            </div>
+            <div class="fp-actions">
+              <a href="skill-medha.html" class="fp-link">
+                Case Study <i class="fas fa-arrow-right fp-arrow"></i>
+              </a>
+              <a href="https://www.figma.com/proto/wvFsYMtpN8sBMm82S8o3En/College-Management-System?node-id=0-1&t=JZKS1XRewdbjmX1M-1" target="_blank" class="fp-link">
+                Prototype <i class="fab fa-figma"></i>
+              </a>
+            </div>
+          </div>
+        </div>
 
 
+      </div><!-- /fp-grid -->
+
+      <div class="fade-in"
+        style="margin-top: 4rem; display: flex; gap: 1.25rem; justify-content: center; flex-wrap: wrap;">
+        <a href="all-projects.html" class="hero-cta-primary" style="padding: 1rem 2.5rem; font-size: 1rem;">
+          <i class="fas fa-grip"></i> View All Projects
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------- 6. PRODUCT WORKFLOW --- -->
   <section id="workflow" class="res-padding" style="background: var(--color-bg);">
     <div class="container">
       <span class="section-label fade-in"
-        style="color:var(--color-primary); text-align: center; display: block;">Process</span>
-      <h2 class="section-title fade-in res-h2" style="margin-top: 0.25rem; text-align: center;">My Product Workflow</h2>
+        style="color:var(--color-primary); text-align: left; display: block;">Process</span>
+      <h2 class="section-title fade-in res-h2" style="margin-top: 0.25rem; text-align: left;">My Product Workflow</h2>
       <p class="fade-in"
-        style="color: var(--color-text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto 3rem auto; text-align: center;">
+        style="color: var(--color-text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 0 3rem 0; text-align: left;">
         A disciplined, end-to-end process that turns ambiguous problems into polished products.
       </p>
 
@@ -854,12 +454,19 @@
 
           <!-- Step 4 -->
           <div class="wf-step">
+            <div class="wf-icon-node"><i class="fas fa-microchip"></i></div>
+            <div class="wf-step-title">AI Augmentation</div>
+            <div class="wf-step-desc">Leveraging AI for rapid prototyping, code optimization, and intelligent asset generation.</div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="wf-step">
             <div class="wf-icon-node"><i class="fas fa-code"></i></div>
             <div class="wf-step-title">Development</div>
             <div class="wf-step-desc">Building isolated components, semantic HTML, and mapping state via React/JS.</div>
           </div>
 
-          <!-- Step 5 -->
+          <!-- Step 6 -->
           <div class="wf-step">
             <div class="wf-icon-node"><i class="fas fa-flask"></i></div>
             <div class="wf-step-title">Testing</div>
@@ -872,192 +479,18 @@
     </div>
   </section>
 
-  <!-- ------------------------------------------- 8. SKILLS --- -->
-  <section id="skills" class="res-padding" style="background: var(--color-bg-secondary);">
-    <div class="container">
-      <span class="section-label fade-in">Toolbox</span>
-      <h2 class="section-title fade-in res-h2" style="margin-top: 0;">Skills</h2>
-      <p class="fade-in"
-        style="color: var(--color-text-secondary); font-size: 1.1rem; max-width: 600px; margin-bottom: 3rem;">
-        The technologies, tools, and disciplines I reach for every day.
-      </p>
-
-      <div class="skills-grid fade-in">
-
-        <div class="skill-group">
-          <h4>Frontend Engineering</h4>
-          <div class="skill-tags">
-            <span class="skill-tag">HTML5</span>
-            <span class="skill-tag">CSS3</span>
-            <span class="skill-tag">JavaScript (ES6+)</span>
-            <span class="skill-tag">React</span>
-            <span class="skill-tag">Redux</span>
-            <span class="skill-tag">TypeScript</span>
-            <span class="skill-tag">REST APIs</span>
-            <span class="skill-tag">Git</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <h4>UI/UX Design</h4>
-          <div class="skill-tags">
-            <span class="skill-tag">Figma</span>
-            <span class="skill-tag">Auto-Layout</span>
-            <span class="skill-tag">Prototyping</span>
-            <span class="skill-tag">User Research</span>
-            <span class="skill-tag">Wireframing</span>
-            <span class="skill-tag">Usability Testing</span>
-            <span class="skill-tag">Information Architecture</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <h4>Design Systems</h4>
-          <div class="skill-tags">
-            <span class="skill-tag">Token Architecture</span>
-            <span class="skill-tag">Component Libraries</span>
-            <span class="skill-tag">CSS Variables</span>
-            <span class="skill-tag">WCAG 2.1 AA</span>
-            <span class="skill-tag">Storybook</span>
-            <span class="skill-tag">Design Handoff</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <h4>Performance &amp; Tools</h4>
-          <div class="skill-tags">
-            <span class="skill-tag">Lighthouse</span>
-            <span class="skill-tag">Chrome DevTools</span>
-            <span class="skill-tag">Lazy Loading</span>
-            <span class="skill-tag">DOM Virtualization</span>
-            <span class="skill-tag">IntersectionObserver</span>
-            <span class="skill-tag">Power BI</span>
-            <span class="skill-tag">DAX</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ------------------------------------------- 9. ABOUT --- -->
-
-
-  <section id="about" class="res-padding" style="background: var(--color-bg);">
-    <div class="container">
-      <span class="section-label fade-in" style="color:var(--color-primary);">Behind the Work</span>
-      <h2 class="section-title fade-in res-h2" style="margin-top: 0;">About</h2>
-
-      <div class="about-grid fade-in">
-
-        <!-- Profile & Buttons -->
-        <div class="about-profile-col">
-          <div class="about-profile-img">
-            <img src="./assets/profile.jpg" alt="Yamini Sappa"
-              onerror="this.src='https://via.placeholder.com/240x240?text=Yamini+Sappa'">
-          </div>
-
-          <div class="about-actions">
-            <a href="./Yamini_Resume_Front%20End%20Developer.pdf" class="btn btn-primary" target="_blank"
-              style="padding: 0.7rem 1.4rem; font-size: 0.9rem;">
-              <i class="fas fa-file-download" style="margin-right: 0.5rem;"></i> Resume
-            </a>
-            <a href="https://www.linkedin.com/in/yamini-sappa" target="_blank" class="btn btn-secondary"
-              style="padding: 0.7rem 1.4rem; font-size: 0.9rem;">
-              <i class="fab fa-linkedin" style="margin-right: 0.5rem;"></i> LinkedIn
-            </a>
-            <a href="https://github.com/mini1796" target="_blank" class="btn btn-secondary"
-              style="padding: 0.7rem 1.4rem; font-size: 0.9rem;">
-              <i class="fab fa-github" style="margin-right: 0.5rem;"></i> GitHub
-            </a>
-          </div>
-        </div>
-
-        <!-- Bio & Details -->
-        <div>
-          <p style="font-size: 1.15rem; color: var(--color-text); line-height: 1.8; margin-bottom: 1.25rem;">
-            I'm <strong>Yamini Sappa</strong> — a Frontend Software Engineer and UI/UX Designer who works at the
-            intersection of product design and scalable web development.
-          </p>
-          <p class="about-bio-text">
-            Over the past 4+ years, I’ve designed and built production-grade digital products including learning
-            platforms, assessment systems, and enterprise dashboards used in EdTech environments. My work spans the
-            entire product lifecycle — from wireframing and high-fidelity UI design in Figma to building responsive,
-            high-performance interfaces using modern frontend technologies.
-          </p>
-          <p class="about-bio-text">
-            Across multiple platforms, I’ve designed 40+ product screens, developed complex UI systems, and implemented
-            modular component architectures that support scalable product growth.
-          </p>
-          <p class="about-bio-text">
-            What differentiates my work is the ability to operate across both design and engineering layers. I can craft
-            a pixel-perfect interface while also architecting the frontend logic that powers it. This dual perspective
-            allows me to move quickly from concept to production while maintaining usability, performance, and visual
-            consistency.
-          </p>
-          <p class="about-bio-text" style="font-weight: 600;">
-            My focus is on building intuitive, scalable product experiences where thoughtful design and efficient
-            engineering come together.
-          </p>
-
-          <div class="about-details-grid">
-            <!-- Education -->
-            <div class="about-detail-card">
-              <div style="color: var(--color-primary); font-size: 1.2rem; margin-bottom: 0.5rem;"><i
-                  class="fas fa-graduation-cap"></i></div>
-              <div style="font-weight: 700; color: var(--color-text); margin-bottom: 0.25rem;">Education</div>
-              <div
-                style="color: var(--color-text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem; font-weight: 600;">
-                Bachelor’s &amp; Master’s — Planning &amp; Technology (SPA New Delhi)</div>
-              <div style="color: var(--color-text-secondary); font-size: 0.85rem;">Human-centered problem solving,
-                systems thinking, and product design foundations.</div>
-            </div>
-
-            <!-- Experience -->
-            <div class="about-detail-card">
-              <div style="color: var(--color-primary); font-size: 1.2rem; margin-bottom: 0.5rem;"><i
-                  class="fas fa-briefcase"></i></div>
-              <div style="font-weight: 700; color: var(--color-text); margin-bottom: 0.25rem;">Experience</div>
-              <div
-                style="color: var(--color-text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem; font-weight: 600;">
-                4+ Years · Product Development &amp; Frontend Engineering</div>
-              <div style="color: var(--color-text-secondary); font-size: 0.85rem;">Built LMS, Assessment platforms,
-                placement dashboards, and mobile-first apps.</div>
-            </div>
-
-            <!-- Location -->
-            <div class="about-detail-card">
-              <div style="color: var(--color-primary); font-size: 1.2rem; margin-bottom: 0.5rem;"><i
-                  class="fas fa-map-marker-alt"></i></div>
-              <div style="font-weight: 700; color: var(--color-text); margin-bottom: 0.25rem;">Location</div>
-              <div style="color: var(--color-text-secondary); font-size: 0.9rem;">India · Open to Remote / Global
-                Opportunities</div>
-            </div>
-
-            <!-- Interests -->
-            <div class="about-detail-card">
-              <div style="color: var(--color-primary); font-size: 1.2rem; margin-bottom: 0.5rem;"><i
-                  class="fas fa-heart"></i></div>
-              <div style="font-weight: 700; color: var(--color-text); margin-bottom: 0.25rem;">Interests</div>
-              <div style="color: var(--color-text-secondary); font-size: 0.9rem; line-height: 1.6;">EdTech · Product
-                Design · Design Systems · Accessibility · AI-Assisted Development</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ------------------------------------------- 10. CONTACT --- -->
-  <section id="contact" class="contact-section res-padding">
+  <!-- ------------------------------------------- 7. CONTACT --- -->
+  <section id="contact" class="contact-section" style="background: var(--color-bg-secondary);">
     <div class="container fade-in">
-      <h2 class="section-title res-h2">Contact / Hire Me</h2>
-      <p class="contact-subtitle">
+      <h2 class="section-title res-h2" style="text-align: center;">Contact / Hire Me</h2>
+      <p class="contact-subtitle" style="text-align: center; margin: 0 auto 1.5rem auto;">
         Have a crazy idea? Let's turn it into reality. Or just say hi, I don't bite.
       </p>
-      <a href="mailto:1710yamini@gmail.com" class="btn btn-primary">1710yamini@gmail.com</a>
+      <div style="text-align: center;">
+        <a href="mailto:1710yamini@gmail.com" class="btn btn-primary">1710yamini@gmail.com</a>
+      </div>
 
-      <div class="social-links">
+      <div class="social-links" style="justify-content: center;">
         <a href="https://www.linkedin.com/in/yamini-sappa" target="_blank" aria-label="LinkedIn"><i
             class="fab fa-linkedin-in"></i></a>
         <a href="https://github.com/mini1796" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
@@ -1071,7 +504,7 @@
     </div>
   </footer>
 
-  <script src="./script.js"></script>
+  <script src="./script.js" defer></script>
 </body>
 
 </html>
